@@ -4,7 +4,7 @@
   <subtitle><![CDATA[先做]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://cthgj.me/"/>
-  <updated>2015-05-17T11:13:02.149Z</updated>
+  <updated>2015-05-17T12:28:05.009Z</updated>
   <id>http://cthgj.me/</id>
   
   <author>
@@ -19,8 +19,8 @@
     <link href="http://cthgj.me/2015/05/13/Markdown%E6%A0%BC%E5%BC%8F/"/>
     <id>http://cthgj.me/2015/05/13/Markdown格式/</id>
     <published>2015-05-13T19:36:35.000Z</published>
-    <updated>2015-05-17T11:13:02.149Z</updated>
-    <content type="html"><![CDATA[<p>由于刚开始学习这种语言格式，很多格式都不知道，因此本文旨在根据成文的顺序，总结出各种符号的使用方式，以供后续练习作参考。</p>
+    <updated>2015-05-17T12:28:05.009Z</updated>
+    <content type="html"><![CDATA[<p>初学markdown，很多格式都不清楚，因此本文旨在根据成文的顺序，搜集各博客后总结出语法，以供自己后续练习作参考。</p>
 <h1 id="1-_标题">1. 标题</h1><p>Markdown中，只需要在文本前面加上 # 即可，同理、还可以增加二级标题、三级标题、四级标题、五级标题和六级标题，总共六级，只需要增加  # 即可，标题字号相应降低。例如：<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#一级标题</span></span><br><span class="line"><span class="preprocessor">##二级标题</span></span><br><span class="line">...</span><br><span class="line"><span class="preprocessor">###### 六级标题</span></span><br></pre></td></tr></table></figure></p>
 <p>效果是这样：</p>
 <blockquote>
@@ -90,11 +90,65 @@
 <li>Item 3</li>
 </ol>
 </blockquote>
+<ul>
+<li><h2 id="表格">表格</h2></li>
+</ul>
+<p>Markdown的扩展语法<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">Item </span>    | <span class="constant">Value</span></span><br><span class="line">-------- | ---</span><br><span class="line"><span class="constant">Computer </span>| <span class="variable">$1600</span></span><br><span class="line"><span class="constant">Phone </span>   | <span class="variable">$12</span></span><br><span class="line"><span class="constant">Pipe </span>    | <span class="variable">$1</span></span><br><span class="line"></span><br><span class="line">| <span class="constant">Tables </span>       | <span class="constant">Are </span>          | <span class="constant">Cool </span> |</span><br><span class="line">| ------------- |<span class="symbol">:-------------</span><span class="symbol">:|</span> -----<span class="symbol">:|</span>(：表示文本位置，默认为左对齐)</span><br><span class="line">| col <span class="number">3</span> is      | right-aligned | <span class="variable">$1600</span> |</span><br><span class="line">| col <span class="number">2</span> is      | centered      |   <span class="variable">$12</span> |</span><br><span class="line">| zebra stripes | are neat      |    <span class="variable">$1</span> |</span><br></pre></td></tr></table></figure></p>
+<p>效果</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Computer</td>
+<td>$1600</td>
+</tr>
+<tr>
+<td>Phone</td>
+<td>$12</td>
+</tr>
+<tr>
+<td>Pipe</td>
+<td>$1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Tables</th>
+<th style="text-align:center">Are</th>
+<th style="text-align:right">Cool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>col 3 is</td>
+<td style="text-align:center">right-aligned</td>
+<td style="text-align:right">$1600</td>
+</tr>
+<tr>
+<td>col 2 is</td>
+<td style="text-align:center">centered</td>
+<td style="text-align:right">$12</td>
+</tr>
+<tr>
+<td>zebra stripes</td>
+<td style="text-align:center">are neat</td>
+<td style="text-align:right">$1</td>
+</tr>
+</tbody>
+</table>
+<p>按照</p>
 <p>基本上就这些了，等需要时再更新。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>由于刚开始学习这种语言格式，很多格式都不知道，因此本文旨在根据成文的顺序，总结出各种符号的使用方式，以供后续练习作参考。</p>
-<h1 id="1-_标题">1. 标题</h1><p>Markdown中，只需要在文本前面加上 # 即可，同理、还可以增加二级标题、三级标题、]]>
+    <![CDATA[<p>初学markdown，很多格式都不清楚，因此本文旨在根据成文的顺序，搜集各博客后总结出语法，以供自己后续练习作参考。</p>
+<h1 id="1-_标题">1. 标题</h1><p>Markdown中，只需要在文本前面加上 # 即可，同理、还可以增加二级标题、三级标题、四级]]>
     </summary>
     
       <category term="markdown" scheme="http://cthgj.me/tags/markdown/"/>
