@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[cthgj]]></title>
-  <subtitle><![CDATA[你的问题不是没想，而是想的稀里糊涂，乱七八糟，都是海那边的楼啊！]]></subtitle>
+  <title><![CDATA[HUGO]]></title>
+  <subtitle><![CDATA[先做]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://cthgj.me/"/>
-  <updated>2015-05-11T21:48:59.350Z</updated>
+  <updated>2015-05-17T11:13:02.149Z</updated>
   <id>http://cthgj.me/</id>
   
   <author>
@@ -15,25 +15,118 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[新博]]></title>
-    <link href="http://cthgj.me/2015/05/11/%E6%96%B0%E5%8D%9A/"/>
-    <id>http://cthgj.me/2015/05/11/新博/</id>
-    <published>2015-05-11T21:48:25.000Z</published>
-    <updated>2015-05-11T21:48:59.350Z</updated>
-    <content type="html"></content>
+    <title><![CDATA[Markdown格式]]></title>
+    <link href="http://cthgj.me/2015/05/13/Markdown%E6%A0%BC%E5%BC%8F/"/>
+    <id>http://cthgj.me/2015/05/13/Markdown格式/</id>
+    <published>2015-05-13T19:36:35.000Z</published>
+    <updated>2015-05-17T11:13:02.149Z</updated>
+    <content type="html"><![CDATA[<p>由于刚开始学习这种语言格式，很多格式都不知道，因此本文旨在根据成文的顺序，总结出各种符号的使用方式，以供后续练习作参考。</p>
+<h1 id="1-_标题">1. 标题</h1><p>Markdown中，只需要在文本前面加上 # 即可，同理、还可以增加二级标题、三级标题、四级标题、五级标题和六级标题，总共六级，只需要增加  # 即可，标题字号相应降低。例如：<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#一级标题</span></span><br><span class="line"><span class="preprocessor">##二级标题</span></span><br><span class="line">...</span><br><span class="line"><span class="preprocessor">###### 六级标题</span></span><br></pre></td></tr></table></figure></p>
+<p>效果是这样：</p>
+<blockquote>
+<h1 id="一级标题">一级标题</h1><h2 id="二级标题">二级标题</h2><h3 id="…">…</h3><h6 id="六级标题">六级标题</h6></blockquote>
+<p>也可以用<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">大标题</span><br><span class="line"><span class="header">=== (&gt;=3个)</span></span><br><span class="line">小标题</span><br><span class="line"><span class="bullet">--- </span>(&gt;=3个)</span><br></pre></td></tr></table></figure></p>
+<p>效果是这样：</p>
+<blockquote>
+<h1 id="大标题">大标题</h1><h2 id="小标题">小标题</h2></blockquote>
+<h1 id="2-_文本内容">2. 文本内容</h1><p>当我们写作时，需要呈现的基本上包括：</p>
+<ul>
+<li><strong>文字</strong> （加粗、斜体、字体、大小、颜色、下划线、删除、分割线）</li>
+<li><strong>引用</strong> （文字、代码）</li>
+<li><strong>链接</strong> （图片，其它链接）</li>
+<li><strong>列表</strong> （有序、无序、嵌套）</li>
+<li><p><strong>表格</strong> </p>
+</li>
+<li><h2 id="文字_加粗、斜体、删除、微软雅黑字体、大小、颜色、分割线、段落">文字_<strong>加粗</strong>、<em>斜体</em>、<del>删除</del>、<font face="微软雅黑">微软雅黑字体</font>、<font size="2px">大小</font>、<font color="green">颜色</font>、分割线、段落</h2><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">*</span><span class="keyword">*</span>加粗<span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line"><span class="keyword">*</span>斜体<span class="keyword">*</span> or _斜体_</span><br><span class="line">~~删除~~</span><br><span class="line"><span class="keyword">*</span>注：以下为html的font语法，默认的markdown并不支持。</span><br><span class="line"><span class="variable">&lt;font face="微软雅黑"&gt;</span>微软雅黑字体<span class="variable">&lt;/font&gt;</span></span><br><span class="line"><span class="variable">&lt;font size="2px"&gt;</span>大小<span class="variable">&lt;/font&gt;</span> 文字大小的单位可以是px，cm，inch等；</span><br><span class="line"><span class="variable">&lt;font color="green"&gt;</span>颜色<span class="variable">&lt;font&gt;</span> 这里设置为绿色 也可以使蓝色 blue 红色red  或更精确丰富的 16进制值如 <span class="comment">#873422；</span></span><br><span class="line">使用3个以上的星号、减号、底线就可以。（<span class="keyword">*</span>注：不过这里的要求是：行内只能有以上3中，其中可以有空白，但不能包含除空格外的其它字符。）</span><br><span class="line">以一个空行开始，以一个空行结束，中间的就是一个段落</span><br></pre></td></tr></table></figure>
+</li>
+<li><h2 id="文字_引用">文字_引用</h2><p>对于简单的文字或几行代码，可以以邮件的输入方式“&gt;”来表示。引用的里面的所有markdown格式都将有效。引用里面可以再添加次级引用。例如：</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;Dear XX,</span><br><span class="line">&gt;How<span class="comment">'s your going? Last week, I visted Paris. I learned some french:</span></span><br><span class="line">&gt;&gt;<span class="number">1.</span>*Bonjour*;</span><br><span class="line">&gt;&gt;<span class="number">2.</span>*Merci*;</span><br><span class="line">&gt;（注：这儿有一空行，退出二级引用）</span><br><span class="line">&gt;It<span class="comment">'s wonderful! </span></span><br><span class="line">&gt;CU soon!</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>效果是这样的：</p>
+<blockquote>
+<p>Dear XX,<br>How’s your going? Last week, I visted Paris. I learned some french:</p>
+<blockquote>
+<p>1.<em>Bonjour</em>;<br>2.<em>Merci</em>;</p>
+</blockquote>
+<p>It’s wonderful!<br>CU soon!</p>
+</blockquote>
+<ul>
+<li><h2 id="链接">链接</h2>Markdown支持两种风格的链接：<strong><em>Inline</em></strong>和<strong><em>Reference</em></strong>。</li>
+</ul>
+<p><strong>Inline</strong>：以中括号标记显示的链接文本，后面紧跟用小括号包围的链接。如果链接有title属性，则在链接中使用空格加”title属性”。</p>
+<p><strong>Reference</strong>：一般应用于多个不同位置使用相同链接。通常分为两个部分，调用部分为<a href="http://equation85.github.io/blog/markdown-examples/" target="_blank" rel="external">链接文本</a>；定义部分可以出现在文本中的其他位置，格式为<a href="http://equation85.github.io/blog/markdown-examples/" target="_blank" rel="external">ref</a>: <a href="http://some/link/address" target="_blank" rel="external">http://some/link/address</a> (可选的标题)。<br>注：ref中不区分大小写。</p>
+<p>例如：<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">这是我的博客地址[<span class="type">My_blog</span>](http://cthgj.me <span class="string">"HUGO"</span>)。</span><br><span class="line">部分博客内容引用自[equation8][<span class="keyword">ref</span>]。</span><br><span class="line">[<span class="keyword">ref</span>]:http://equation85.github.io/blog/markdown-examples/</span><br><span class="line">*注：title 为可选；</span><br><span class="line">*注：<span class="keyword">ref</span>其实就类似于写文章中的插入参考文献，先加入文字，再在文末添加references相关信息；</span><br></pre></td></tr></table></figure></p>
+<p>效果</p>
+<p>这是我的博客地址<a href="http://cthgj.me" title="HUGO" target="_blank" rel="external">My_blog</a>。<br>部分博客内容引用自<a href="http://equation85.github.io/blog/markdown-examples/" target="_blank" rel="external">equation8</a>。</p>
+<p>对于图片的链接，在中括号前加<strong>叹号</strong>即可。<br><strong><em>注：Markdown不能设置图片大小，如果必须设置则应使用HTML标记<img>。</em></strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Inline示例：![<span class="link_label">banner</span>](<span class="link_url">https://raw.githubusercontent.com/e-tomato/e-tomato.github.io/master/img/banner.jpg</span>)</span><br><span class="line">Reference示例：![<span class="link_label">替代文本</span>][<span class="link_reference">pic</span>]</span><br><span class="line">[<span class="link_reference">pic</span>]:<span class="link_url">https://raw.githubusercontent.com/e-tomato/e-tomato.github.io/master/img/banner.jpg "可选的title"</span></span><br><span class="line">HTML示例：<span class="xml"><span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"https://raw.githubusercontent.com/e-tomato/e-tomato.github.io/master/img/banner.jpg"</span> <span class="attribute">alt</span>=<span class="value">"替代文本"</span> <span class="attribute">title</span>=<span class="value">"标题文本"</span> <span class="attribute">width</span>=<span class="value">"200"</span> /&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>效果：</p>
+<p>Inline示例：<img src="https://raw.githubusercontent.com/e-tomato/e-tomato.github.io/master/img/banner.jpg" alt="banner"><br>Reference示例：<img src="https://raw.githubusercontent.com/e-tomato/e-tomato.github.io/master/img/banner.jpg" alt="替代文本" title="可选的title"></p>
+<p>HTML示例：<img src="https://raw.githubusercontent.com/e-tomato/e-tomato.github.io/master/img/banner.jpg" alt="替代文本" title="标题文本" width="200"></p>
+<ul>
+<li><h2 id="列表">列表</h2>无序列表使用*、+或-后面加上空格来表示。<br>有序列表使用数字加英文句号加空格表示。例如：<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">* </span>Item 1</span><br><span class="line"><span class="bullet">* </span>Item 2</span><br><span class="line"><span class="bullet">* </span>Item 3</span><br><span class="line"></span><br><span class="line"><span class="bullet">+ </span>Item 1</span><br><span class="line"><span class="bullet">+ </span>Item 2</span><br><span class="line"><span class="bullet">+ </span>Item 3</span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span>Item 1</span><br><span class="line"><span class="bullet">- </span>Item 2</span><br><span class="line"><span class="bullet">- </span>Item 3</span><br><span class="line"></span><br><span class="line"><span class="bullet">1. </span>Item 1</span><br><span class="line"><span class="bullet">2. </span>Item 2</span><br><span class="line"><span class="bullet">3. </span>Item 3</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>效果：</p>
+<blockquote>
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+</ul>
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+</ul>
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+</ul>
+<ol>
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+</ol>
+</blockquote>
+<p>基本上就这些了，等需要时再更新。</p>
+]]></content>
     <summary type="html">
-    
+    <![CDATA[<p>由于刚开始学习这种语言格式，很多格式都不知道，因此本文旨在根据成文的顺序，总结出各种符号的使用方式，以供后续练习作参考。</p>
+<h1 id="1-_标题">1. 标题</h1><p>Markdown中，只需要在文本前面加上 # 即可，同理、还可以增加二级标题、三级标题、]]>
     </summary>
     
-      <category term="test" scheme="http://cthgj.me/tags/test/"/>
+      <category term="markdown" scheme="http://cthgj.me/tags/markdown/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[阅读书目]]></title>
+    <link href="http://cthgj.me/2015/05/13/%E9%98%85%E8%AF%BB%E4%B9%A6%E7%9B%AE/"/>
+    <id>http://cthgj.me/2015/05/13/阅读书目/</id>
+    <published>2015-05-13T19:14:35.000Z</published>
+    <updated>2015-05-13T19:16:30.926Z</updated>
+    <content type="html"><![CDATA[<ol>
+<li>《伟大的博物学家》;</li>
+<li>to be continued;</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<ol>
+<li>《伟大的博物学家》;</li>
+<li>to be continued;</li>
+</ol>
+]]>
+    </summary>
     
   </entry>
   
   <entry>
     <title><![CDATA[Hello World]]></title>
-    <link href="http://cthgj.me/2015/05/10/hello-world/"/>
-    <id>http://cthgj.me/2015/05/10/hello-world/</id>
-    <published>2015-05-10T21:24:53.253Z</published>
+    <link href="http://cthgj.me/2015/05/11/hello-world/"/>
+    <id>http://cthgj.me/2015/05/11/hello-world/</id>
+    <published>2015-05-11T21:49:27.488Z</published>
     <updated>2015-05-10T21:24:53.253Z</updated>
     <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
@@ -48,6 +141,21 @@
     <summary type="html">
     <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
     </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[新博]]></title>
+    <link href="http://cthgj.me/2015/05/11/%E6%96%B0%E5%8D%9A/"/>
+    <id>http://cthgj.me/2015/05/11/新博/</id>
+    <published>2015-05-11T21:48:25.000Z</published>
+    <updated>2015-05-11T21:48:59.350Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="test" scheme="http://cthgj.me/tags/test/"/>
     
   </entry>
   
