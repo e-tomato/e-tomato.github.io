@@ -4,25 +4,22 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>阅读书目 | HUGO</title>
+    <title>随机抽样中覆盖率、重复率概率分析 | HUGO</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="瓜西德咧">
     
 
     
-    <meta name="description" content="《伟大的博物学家》;
-to be continued;">
+    <meta name="description" content="问题1：从标有1-10号的球中，每次随机有放回的抽取10个球，至少重复多少次能把全部10个数字抽取完？每次试验100次，计算覆盖率的均值作为一次试验的结果。然后统计1个100次试验~1000个100次试验的覆盖率的plot图。1x&amp;#60;-c()&amp;#10;coverge&amp;#60;-c()&amp;#10;mean.cov &amp;#60;-c()&amp;#10;&amp;#10;for (m in 1:1000)&amp;#10;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="阅读书目">
-<meta property="og:url" content="http://cthgj.me/2015/05/13/阅读书目/index.html">
+<meta property="og:title" content="随机抽样中覆盖率、重复率概率分析">
+<meta property="og:url" content="http://cthgj.me/2015/05/21/随机抽样中覆盖率、重复率概率分析/index.html">
 <meta property="og:site_name" content="HUGO">
-<meta property="og:description" content="《伟大的博物学家》;
-to be continued;">
+<meta property="og:description" content="问题1：从标有1-10号的球中，每次随机有放回的抽取10个球，至少重复多少次能把全部10个数字抽取完？每次试验100次，计算覆盖率的均值作为一次试验的结果。然后统计1个100次试验~1000个100次试验的覆盖率的plot图。1x&amp;#60;-c()&amp;#10;coverge&amp;#60;-c()&amp;#10;mean.cov &amp;#60;-c()&amp;#10;&amp;#10;for (m in 1:1000)&amp;#10;">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="阅读书目">
-<meta name="twitter:description" content="《伟大的博物学家》;
-to be continued;">
+<meta name="twitter:title" content="随机抽样中覆盖率、重复率概率分析">
+<meta name="twitter:description" content="问题1：从标有1-10号的球中，每次随机有放回的抽取10个球，至少重复多少次能把全部10个数字抽取完？每次试验100次，计算覆盖率的均值作为一次试验的结果。然后统计1个100次试验~1000个100次试验的覆盖率的plot图。1x&amp;#60;-c()&amp;#10;coverge&amp;#60;-c()&amp;#10;mean.cov &amp;#60;-c()&amp;#10;&amp;#10;for (m in 1:1000)&amp;#10;">
 <link rel="publisher" href="109110535946297068779">
 
     
@@ -81,14 +78,14 @@ to be continued;">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/05/13/阅读书目/" title="阅读书目" itemprop="url">阅读书目</a>
+      <a href="/2015/05/21/随机抽样中覆盖率、重复率概率分析/" title="随机抽样中覆盖率、重复率概率分析" itemprop="url">随机抽样中覆盖率、重复率概率分析</a>
   </h1>
   <p class="article-author">By
        
 		<a href="https://plus.google.com/109110535946297068779?rel=author" title="瓜西德咧" target="_blank" itemprop="author">瓜西德咧</a>
 		
   <p class="article-time">
-    <time datetime="2015-05-13T19:14:35.000Z" itemprop="datePublished"> 發表於 2015-05-13</time>
+    <time datetime="2015-05-21T14:42:05.000Z" itemprop="datePublished"> 發表於 2015-05-21</time>
     
   </p>
 </header>
@@ -101,10 +98,19 @@ to be continued;">
 		
 		</div>
 		
-		<ol>
-<li>《伟大的博物学家》;</li>
-<li>to be continued;</li>
-</ol>
+		<p>问题1：从标有1-10号的球中，每次随机有放回的抽取10个球，至少重复多少次能把全部10个数字抽取完？每次试验100次，计算覆盖率的均值作为一次试验的结果。然后统计1个100次试验~1000个100次试验的覆盖率的plot图。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x&#60;-c()&#10;coverge&#60;-c()&#10;mean.cov &#60;-c()&#10;&#10;for (m in 1:1000)&#10;&#123; x[m]&#60;-m&#10;  for (n in 1:100)&#10;  &#123;&#10;    coverge[n]&#60;-length(levels(factor(sample(1:10,10,replace=T))))/10&#10;  &#125;&#10;  mean.cov[m] &#60;- mean(coverge)&#10;&#125;&#10;&#10;x&#10;summary(mean.cov)&#10;plot(x,mean.cov)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>所以，1000次试验，覆盖率的均值基本不会变化(都在61.4~68.1%)。即单纯的重复有限次抽取并不能保证都抽到。（限制因子有：单次抽取的球的个数（10个，越多自然能得到更高覆盖率）、样本容量size（10个球，5个则是84.6%~92.8%，6个则是80%~88%，7个则是75%~82%，8个则是71%~77%，9个则是65%~73%）</li>
+</ul>
+<p>问题2：同上，单个数字被平均重复抽取多少次时，可以把10个数字抽完？每次试验100次，计算覆盖率的均值作为一次试验的结果，计算数字重复次数的均值作为一次试验的结果。然后统计1个100次试验~1000个100次试验的覆盖率和深度的plot图。</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">x&lt;-c()</span><br><span class="line">coverge&lt;-c()</span><br><span class="line"><span class="keyword">mean</span>.cov &lt;-c()</span><br><span class="line"><span class="keyword">mean</span>.dep &lt;-c()</span><br><span class="line">dep.aver &lt;-c()</span><br><span class="line"><span class="keyword">sample</span> &lt;-c()</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">m</span> <span class="keyword">in</span> 1:1000)</span><br><span class="line">&#123; x[<span class="keyword">m</span>]&lt;-<span class="literal">m</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">n</span> <span class="keyword">in</span> 1:100)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">sample</span>&lt;-<span class="keyword">sample</span>(1:10,10,<span class="keyword">replace</span>=T)</span><br><span class="line">    dep.aver[<span class="keyword">n</span>] &lt;-<span class="keyword">mean</span>(summary(<span class="keyword">factor</span>(<span class="keyword">sample</span>)))</span><br><span class="line">    coverge[<span class="keyword">n</span>]&lt;-<span class="literal">length</span>(<span class="keyword">levels</span>(<span class="keyword">factor</span>(<span class="keyword">sample</span>)))/10</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">mean</span>.dep[<span class="keyword">m</span>]&lt;- <span class="keyword">mean</span>(dep.aver)</span><br><span class="line">  <span class="keyword">mean</span>.cov[<span class="keyword">m</span>] &lt;- <span class="keyword">mean</span>(coverge)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">x</span><br><span class="line">summary(<span class="keyword">mean</span>.cov)</span><br><span class="line">summary(<span class="keyword">mean</span>.dep)</span><br><span class="line"><span class="keyword">plot</span>(<span class="keyword">mean</span>.dep,<span class="keyword">mean</span>.cov)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>所以，1000次试验中，无论怎样，覆盖率的均值基本不会变化(都在62.0~68.6%，也即是上问的结果：即单纯的重复有限次抽取并不能保证全部都抽到。)；同时，虽然深度和覆盖率呈线性负相关性，但在单纯的重复有限次抽取情况下根本不可能本质上的增加深度（本例中，mean.dep=（1.491，1.658）。而是，深度与抽取次数相关。如果我一次性有放回抽取的是20个，那么，覆盖率范围变大（84.3%~90.6%），深度变为（2.227~2.403）。</li>
+</ul>
+<p>问题3：从标有1-10号的球中，仅限抽取一次，随机抽取多少个球能把10个数字全部抽完？试验100次，每次取平均值，得到plot图。<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">x&lt;-c()</span><br><span class="line">coverge&lt;-c()</span><br><span class="line"><span class="keyword">mean</span>.cov &lt;-c()</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">m</span> <span class="keyword">in</span> 1:50)</span><br><span class="line">&#123; x[<span class="keyword">m</span>]&lt;-<span class="literal">m</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">n</span> <span class="keyword">in</span> 1:100)</span><br><span class="line">  &#123;</span><br><span class="line">    coverge[<span class="keyword">n</span>]&lt;-<span class="literal">length</span>(<span class="keyword">levels</span>(<span class="keyword">factor</span>(<span class="keyword">sample</span>(1:10,<span class="keyword">m</span>,<span class="keyword">replace</span>=T))))/10</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">mean</span>.cov[<span class="keyword">m</span>] &lt;- <span class="keyword">mean</span>(coverge)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">x</span><br><span class="line">coverge</span><br><span class="line"><span class="keyword">plot</span>(x,<span class="keyword">mean</span>.cov)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>所以，约20~30次计数抽取即可覆盖80%~90%的号。</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -117,7 +123,7 @@ to be continued;">
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://cthgj.me/2015/05/13/阅读书目/" data-title="阅读书目 | HUGO" data-tsina="null" class="share clearfix">
+	  <div data-url="http://cthgj.me/2015/05/21/随机抽样中覆盖率、重复率概率分析/" data-title="随机抽样中覆盖率、重复率概率分析 | HUGO" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -131,18 +137,18 @@ to be continued;">
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/05/13/Markdown格式/" title="Markdown格式">
+ <a href="/2015/06/06/概率统计学习-一/" title="概率统计学习-My Questionnaire">
   <strong>上一篇：</strong><br/>
   <span>
-  Markdown格式</span>
+  概率统计学习-My Questionnaire</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/05/11/hello-world/"  title="Hello World">
+<a href="/2015/05/19/R基本命令-不完全记录）/"  title="R基本命令(不完全记录）">
  <strong>下一篇：</strong><br/> 
- <span>Hello World
+ <span>R基本命令(不完全记录）
 </span>
 </a>
 </div>

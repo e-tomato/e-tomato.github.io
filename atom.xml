@@ -4,7 +4,7 @@
   <subtitle><![CDATA[先做]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://cthgj.me/"/>
-  <updated>2015-05-17T12:28:05.009Z</updated>
+  <updated>2015-06-06T16:27:35.627Z</updated>
   <id>http://cthgj.me/</id>
   
   <author>
@@ -15,11 +15,500 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[概率统计学习-My Questionnaire]]></title>
+    <link href="http://cthgj.me/2015/06/06/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0-%E4%B8%80/"/>
+    <id>http://cthgj.me/2015/06/06/概率统计学习-一/</id>
+    <published>2015-06-06T15:25:43.000Z</published>
+    <updated>2015-06-06T16:27:35.627Z</updated>
+    <content type="html"><![CDATA[<p>刚在看吴喜之教授的《统计学：从数据到结论》中发现很多以前没想到的很有意思的概念。</p>
+<p><strong>Questionnaire</strong>，我以前一直只认为它是市场营销类的专业词。其实，对各个需要得到数据的科学领域，这个表是引导获取原始数据的最关键环节，更是引导深入分析的支持点。基于个人的理解，一份questionnaire应该需要这些思路：</p>
+<ul>
+<li>对于单基因的研究<ol>
+<li>获得该基因的所有能获得的背景信息（包括基因序列，保守结构域分析，表达谱，定位分析，进化分析，启动子分析，同源基因功能备注等等），准备制作问卷表；</li>
+<li>根据突变缺失或超表达（研究单基因必需的步骤），问在哪些组织具有表型（这个通常不会太多，一般只是几个focus），分类分层次，标定为N个tissue.level；</li>
+<li>在不同tissue.level上，非正常/正常值比例（显著吗？），非正常值在器官和细胞层次的不同指标（这个得需要寻找类似研究作参考）的变化。同样分层次，标定为N个organ.level和cell.level<br>（如观察到花出现表型，多少花不正常？不正常的花出现在哪些位置？各个花器官数量是多少？各花器官的大小是否发生变化？分化出该器官的花的细胞数量是否发生变化？细胞位置，细胞大小，形态等是否发生变化？等等）</li>
+<li>基于不同level下的表型，寻找，分析，推断可能的具有关联性的基因（关联性包括上游，下游，平等）。如果文献支撑强的话，问：我找到的这些基因是否可以具有这种关系，是哪种关系？然后就可以直接试验（包括转录和蛋白水平的检测，DNA蛋白互作，蛋白互作等）；如果无法顺利找到时，而花费又允许的情况下，RNA-seq 差异基因检测，ChIP-seq结合DNA检测，蛋白质差异检测直接上。</li>
+</ol>
+</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[摘要最后写吧。附加一段文章摘要，字数最好在140字以内。]]>
+    
+    </summary>
+    
+      <category term="R" scheme="http://cthgj.me/tags/R/"/>
+    
+      <category term="数据分析" scheme="http://cthgj.me/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+    
+      <category term="统计学" scheme="http://cthgj.me/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/"/>
+    
+      <category term="统计与R" scheme="http://cthgj.me/categories/%E7%BB%9F%E8%AE%A1%E4%B8%8ER/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[随机抽样中覆盖率、重复率概率分析]]></title>
+    <link href="http://cthgj.me/2015/05/21/%E9%9A%8F%E6%9C%BA%E6%8A%BD%E6%A0%B7%E4%B8%AD%E8%A6%86%E7%9B%96%E7%8E%87%E3%80%81%E9%87%8D%E5%A4%8D%E7%8E%87%E6%A6%82%E7%8E%87%E5%88%86%E6%9E%90/"/>
+    <id>http://cthgj.me/2015/05/21/随机抽样中覆盖率、重复率概率分析/</id>
+    <published>2015-05-21T14:42:05.000Z</published>
+    <updated>2015-05-21T16:42:36.904Z</updated>
+    <content type="html"><![CDATA[<p>问题1：从标有1-10号的球中，每次随机有放回的抽取10个球，至少重复多少次能把全部10个数字抽取完？每次试验100次，计算覆盖率的均值作为一次试验的结果。然后统计1个100次试验~1000个100次试验的覆盖率的plot图。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x&#60;-c()&#10;coverge&#60;-c()&#10;mean.cov &#60;-c()&#10;&#10;for (m in 1:1000)&#10;&#123; x[m]&#60;-m&#10;  for (n in 1:100)&#10;  &#123;&#10;    coverge[n]&#60;-length(levels(factor(sample(1:10,10,replace=T))))/10&#10;  &#125;&#10;  mean.cov[m] &#60;- mean(coverge)&#10;&#125;&#10;&#10;x&#10;summary(mean.cov)&#10;plot(x,mean.cov)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>所以，1000次试验，覆盖率的均值基本不会变化(都在61.4~68.1%)。即单纯的重复有限次抽取并不能保证都抽到。（限制因子有：单次抽取的球的个数（10个，越多自然能得到更高覆盖率）、样本容量size（10个球，5个则是84.6%~92.8%，6个则是80%~88%，7个则是75%~82%，8个则是71%~77%，9个则是65%~73%）</li>
+</ul>
+<p>问题2：同上，单个数字被平均重复抽取多少次时，可以把10个数字抽完？每次试验100次，计算覆盖率的均值作为一次试验的结果，计算数字重复次数的均值作为一次试验的结果。然后统计1个100次试验~1000个100次试验的覆盖率和深度的plot图。</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">x&lt;-c()</span><br><span class="line">coverge&lt;-c()</span><br><span class="line"><span class="keyword">mean</span>.cov &lt;-c()</span><br><span class="line"><span class="keyword">mean</span>.dep &lt;-c()</span><br><span class="line">dep.aver &lt;-c()</span><br><span class="line"><span class="keyword">sample</span> &lt;-c()</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">m</span> <span class="keyword">in</span> 1:1000)</span><br><span class="line">&#123; x[<span class="keyword">m</span>]&lt;-<span class="literal">m</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">n</span> <span class="keyword">in</span> 1:100)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">sample</span>&lt;-<span class="keyword">sample</span>(1:10,10,<span class="keyword">replace</span>=T)</span><br><span class="line">    dep.aver[<span class="keyword">n</span>] &lt;-<span class="keyword">mean</span>(summary(<span class="keyword">factor</span>(<span class="keyword">sample</span>)))</span><br><span class="line">    coverge[<span class="keyword">n</span>]&lt;-<span class="literal">length</span>(<span class="keyword">levels</span>(<span class="keyword">factor</span>(<span class="keyword">sample</span>)))/10</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">mean</span>.dep[<span class="keyword">m</span>]&lt;- <span class="keyword">mean</span>(dep.aver)</span><br><span class="line">  <span class="keyword">mean</span>.cov[<span class="keyword">m</span>] &lt;- <span class="keyword">mean</span>(coverge)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">x</span><br><span class="line">summary(<span class="keyword">mean</span>.cov)</span><br><span class="line">summary(<span class="keyword">mean</span>.dep)</span><br><span class="line"><span class="keyword">plot</span>(<span class="keyword">mean</span>.dep,<span class="keyword">mean</span>.cov)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>所以，1000次试验中，无论怎样，覆盖率的均值基本不会变化(都在62.0~68.6%，也即是上问的结果：即单纯的重复有限次抽取并不能保证全部都抽到。)；同时，虽然深度和覆盖率呈线性负相关性，但在单纯的重复有限次抽取情况下根本不可能本质上的增加深度（本例中，mean.dep=（1.491，1.658）。而是，深度与抽取次数相关。如果我一次性有放回抽取的是20个，那么，覆盖率范围变大（84.3%~90.6%），深度变为（2.227~2.403）。</li>
+</ul>
+<p>问题3：从标有1-10号的球中，仅限抽取一次，随机抽取多少个球能把10个数字全部抽完？试验100次，每次取平均值，得到plot图。<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">x&lt;-c()</span><br><span class="line">coverge&lt;-c()</span><br><span class="line"><span class="keyword">mean</span>.cov &lt;-c()</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">m</span> <span class="keyword">in</span> 1:50)</span><br><span class="line">&#123; x[<span class="keyword">m</span>]&lt;-<span class="literal">m</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">n</span> <span class="keyword">in</span> 1:100)</span><br><span class="line">  &#123;</span><br><span class="line">    coverge[<span class="keyword">n</span>]&lt;-<span class="literal">length</span>(<span class="keyword">levels</span>(<span class="keyword">factor</span>(<span class="keyword">sample</span>(1:10,<span class="keyword">m</span>,<span class="keyword">replace</span>=T))))/10</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">mean</span>.cov[<span class="keyword">m</span>] &lt;- <span class="keyword">mean</span>(coverge)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">x</span><br><span class="line">coverge</span><br><span class="line"><span class="keyword">plot</span>(x,<span class="keyword">mean</span>.cov)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>所以，约20~30次计数抽取即可覆盖80%~90%的号。</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>问题1：从标有1-10号的球中，每次随机有放回的抽取10个球，至少重复多少次能把全部10个数字抽取完？每次试验100次，计算覆盖率的均值作为一次试验的结果。然后统计1个100次试验~1000个100次试验的覆盖率的plot图。<br><figure class="highl]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[R基本命令(不完全记录）]]></title>
+    <link href="http://cthgj.me/2015/05/19/R%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4-%E4%B8%8D%E5%AE%8C%E5%85%A8%E8%AE%B0%E5%BD%95%EF%BC%89/"/>
+    <id>http://cthgj.me/2015/05/19/R基本命令-不完全记录）/</id>
+    <published>2015-05-19T21:36:07.000Z</published>
+    <updated>2015-05-19T21:55:21.307Z</updated>
+    <content type="html"><![CDATA[<p></p><p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" target="_blank" rel="external">http://rmarkdown.rstudio.com</a>.</p><p></p>
+<p></p><p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. </p>
+<p></p><p>查看getwd()当前工作路径;设定setwd()工作路径;</p><p></p>
+<pre class="r"><code>getwd()</code></pre>
+<pre><code>## [1] &quot;D:/On-learning/R&amp;Statistic_life_science/R_basics&quot;</code></pre>
+<pre class="r"><code>setwd(&quot;D:/On-learning/R&amp;Statistic_life_science/R_basics/&quot;) </code></pre>
+<p>下载数据。需要downloader包，download语法如下： download(“<a href="https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/" target="_blank" rel="external">https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/</a>”,“msleep_ggplot2.csv”)</p>
+<p>导入数据。对于不同的类型的数据格式需用不同的导入函数，一般是read.table, read.csv, read.dataframe… 如果数据表格中没有标题行，则需加入 header=FASLE，数据中的每列标题则是V1，V2…等，可以用df$V1等取子集；默认包含标题，标题行是第一行。</p>
+<pre class="r"><code>df &lt;- read.csv(&quot;msleep_ggplot2.csv&quot;, header = TRUE)</code></pre>
+<p>查看数据基本信息：head，tail，dim，summary，typeof等。</p>
+<pre class="r"><code>head(df) #表头</code></pre>
+<pre><code>##                         name      genus  vore        order conservation
+## 1                    Cheetah   Acinonyx carni    Carnivora           lc
+## 2                 Owl monkey      Aotus  omni     Primates         &lt;NA&gt;
+## 3            Mountain beaver Aplodontia herbi     Rodentia           nt
+## 4 Greater short-tailed shrew    Blarina  omni Soricomorpha           lc
+## 5                        Cow        Bos herbi Artiodactyla domesticated
+## 6           Three-toed sloth   Bradypus herbi       Pilosa         &lt;NA&gt;
+##   sleep_total sleep_rem sleep_cycle awake brainwt  bodywt
+## 1        12.1        NA          NA  11.9      NA  50.000
+## 2        17.0       1.8          NA   7.0 0.01550   0.480
+## 3        14.4       2.4          NA   9.6      NA   1.350
+## 4        14.9       2.3   0.1333333   9.1 0.00029   0.019
+## 5         4.0       0.7   0.6666667  20.0 0.42300 600.000
+## 6        14.4       2.2   0.7666667   9.6      NA   3.850</code></pre>
+<pre class="r"><code>dim(df)</code></pre>
+<pre><code>## [1] 83 11</code></pre>
+<pre class="r"><code>summary(df$sleep_total)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1.90    7.85   10.10   10.43   13.75   19.90</code></pre>
+
+<p></p><p>对导入的数据进行筛选，排查，标准化</p><p></p>
+<p></p><p>对部分数据进行分析时，需要取子集[]。常用的是某行/列，连续或指定的几行/几列，满足条件的行/列；</p><p></p>
+<pre class="r"><code>df.head.5 &lt;-df[c(1:5),] #对前五行取子集,等同于head(df,5)。构建一个向量指定具体行，如c(2,3,6,7)
+df.any.3 &lt;- df[sample(1:11,3,replace=F),] #对任意（非重复）3行取子集
+df.high.sleep &lt;-df[df$sleep_total &gt;18,] #df$sleep_total&gt;=18即是一个逻辑值组成的向量，表示所有满足条件的行。【通过逻辑值得到数值数据】
+df.highest.sleep &lt;- df[df$sleep_total==max(df$sleep_total,na.rm=T),] #去除na值之后，取sleep_total值为最大的那一行。
+mean(df[df$sleep_total&gt;18,]$sleep_total) #计算sleep_total大于18的平均值。</code></pre>
+<pre><code>## [1] 19.275</code></pre>
+<p>对向量vector的几种常用操作。包括查找(which,match)，排序(sort, order, rank) #which</p>
+<pre class="r"><code>which(df$sleep_total&gt;18) #得到满足条件的**行号**！注意，是**行号**！组成数字索引(numeric index)。然后获得相应行的所有信息，即可用：</code></pre>
+<pre><code>## [1] 22 37 43 62</code></pre>
+<pre class="r"><code>df[which(df$sleep_total&gt;18),] #效果其实跟df[df$sleep_total &gt;18,]是一样的。**which**意思即是得到满足条件的**那些行号**。</code></pre>
+<pre><code>##                    name      genus    vore           order conservation
+## 22        Big brown bat  Eptesicus insecti      Chiroptera           lc
+## 37 Thick-tailed opposum Lutreolina   carni Didelphimorphia           lc
+## 43     Little brown bat     Myotis insecti      Chiroptera         &lt;NA&gt;
+## 62      Giant armadillo Priodontes insecti       Cingulata           en
+##    sleep_total sleep_rem sleep_cycle awake brainwt bodywt
+## 22        19.7       3.9   0.1166667   4.3 0.00030  0.023
+## 37        19.4       6.6          NA   4.6      NA  0.370
+## 43        19.9       2.0   0.2000000   4.1 0.00025  0.010
+## 62        18.1       6.1          NA   5.9 0.08100 60.000</code></pre>
+<pre class="r"><code>df$sleep_total[which(df$sleep_total &gt;18)[1]] #获得满足条件的第一行</code></pre>
+<pre><code>## [1] 19.7</code></pre>
+<pre class="r"><code>df.median.sleep&lt;-df[which(df$sleep_total &gt; quantile(df$sleep_total,probs = 50/100) &amp; df$sleep_rem&lt;3),]
+df.median.herbi&lt;-df[which(df$sleep_total &gt; quantile(df$sleep_total,probs = 50/100) &amp; df$vore==&quot;herbi&quot;),] #herbi中，输出sleep_total前50%的行信息。</code></pre>
+<p>三种排序方式 sort</p>
+<pre class="r"><code>sort(df$sleep_total) #得到满足条件的**值**！注意，这里是**值**！组成数字向量numeric values。</code></pre>
+<pre><code>##  [1]  1.9  2.7  2.9  3.0  3.1  3.3  3.5  3.8  3.9  4.0  4.4  5.2  5.3  5.3
+## [15]  5.4  5.6  6.2  6.3  6.3  7.0  7.7  8.0  8.3  8.4  8.4  8.6  8.7  8.7
+## [29]  8.9  9.1  9.1  9.4  9.4  9.5  9.6  9.7  9.8  9.8 10.0 10.1 10.1 10.1
+## [43] 10.3 10.3 10.4 10.6 10.9 11.0 11.0 11.1 11.3 11.5 12.1 12.5 12.5 12.5
+## [57] 12.5 12.8 12.8 13.0 13.5 13.7 13.8 14.2 14.3 14.4 14.4 14.5 14.6 14.9
+## [71] 14.9 15.6 15.8 15.8 15.9 16.6 17.0 17.4 18.0 18.1 19.4 19.7 19.9</code></pre>
+<pre class="r"><code>#查看df[sort(df$sleep_total),]$sleep_total与sort(df$sleep_total)的值是不同的。</code></pre>
+<p>order</p>
+<pre class="r"><code>order(df$sleep_total) #得到满足条件的**行号**！注意，是**行号**！组成数字索引(numeric index)。</code></pre>
+<pre><code>##  [1] 30 31 23 10 24 36 59 49 21  5 77 80 11 19 63 60 32 33 81  8 46 34 16
+## [24] 48 67 75  7 65 79 17 74 12 54 35 66 50 29 83 13  9 25 38 15 55 52 69
+## [47] 26 45 56 61 68 57  1 14 28 42 82 41 73 64 53 58 71 39 40  3  6 47 44
+## [70]  4 27 78 51 76 72 70  2 18 20 62 37 22 43</code></pre>
+<pre class="r"><code>#df[order(df$sleep_total),]$sleep_total与sort(df$sleep_total)的值是相同的。</code></pre>
+<p>rank</p>
+<pre class="r"><code>rank(df$sleep_total) #给个值排名，得到的是一个数值向量。</code></pre>
+<pre><code>##  [1] 53.0 77.0 66.5 70.5 10.0 66.5 27.5 20.0 41.0  4.0 13.5 32.5 39.0 55.5
+## [15] 43.5 23.0 30.5 78.0 13.5 79.0  9.0 82.0  3.0  5.0 41.0 47.0 70.5 55.5
+## [29] 37.5  1.0  2.0 17.0 18.5 22.0 34.0  6.0 81.0 41.0 64.0 65.0 58.5 55.5
+## [43] 83.0 69.0 48.5 21.0 68.0 24.5  8.0 36.0 73.5 45.0 61.0 32.5 43.5 48.5
+## [57] 52.0 62.0  7.0 16.0 50.0 80.0 15.0 60.0 27.5 35.0 24.5 51.0 46.0 76.0
+## [71] 63.0 75.0 58.5 30.5 26.0 73.5 11.0 72.0 29.0 12.0 18.5 55.5 37.5</code></pre>
+<pre class="r"><code>rank(c(1,2,2,3))</code></pre>
+<pre><code>## [1] 1.0 2.5 2.5 4.0</code></pre>
+<pre class="r"><code>#结果为[1] 1.0 2.5 2.5 4.0，共四个，两个并列第2.5</code></pre>
+<p>match</p>
+<pre class="r"><code>match(c(&quot;Cow&quot;,&quot;Owl monkey&quot;,&quot;Cheetah&quot;),df$name) #得到满足条件的**行号**！注意，是**行号**！组成数字索引(numeric index)。然后获得相应行的所有信息，即可用</code></pre>
+<pre><code>## [1] 5 2 1</code></pre>
+<pre class="r"><code>df[match(c(&quot;Cow&quot;,&quot;Owl monkey&quot;,&quot;Cheetah&quot;),df$name),] </code></pre>
+<pre><code>##         name    genus  vore        order conservation sleep_total
+## 5        Cow      Bos herbi Artiodactyla domesticated         4.0
+## 2 Owl monkey    Aotus  omni     Primates         &lt;NA&gt;        17.0
+## 1    Cheetah Acinonyx carni    Carnivora           lc        12.1
+##   sleep_rem sleep_cycle awake brainwt bodywt
+## 5       0.7   0.6666667  20.0  0.4230 600.00
+## 2       1.8          NA   7.0  0.0155   0.48
+## 1        NA          NA  11.9      NA  50.00</code></pre>
+<p>数据的组合grouping data factor: factor是把字符型向量转换成整数储存在，但同时具有levels属性，即用levels来分类。没有理解到。</p>
+<pre class="r"><code>vec = c(&quot;red&quot;,&quot;blue&quot;,&quot;red&quot;,&quot;green&quot;,&quot;green&quot;,&quot;yellow&quot;,&quot;orange&quot;)
+fac = factor(vec)
+fac</code></pre>
+<pre><code>## [1] red    blue   red    green  green  yellow orange
+## Levels: blue green orange red yellow</code></pre>
+<pre class="r"><code>levels(fac)</code></pre>
+<pre><code>## [1] &quot;blue&quot;   &quot;green&quot;  &quot;orange&quot; &quot;red&quot;    &quot;yellow&quot;</code></pre>
+<p>table</p>
+<pre class="r"><code>levels(df$order)</code></pre>
+<pre><code>##  [1] &quot;Afrosoricida&quot;    &quot;Artiodactyla&quot;    &quot;Carnivora&quot;      
+##  [4] &quot;Cetacea&quot;         &quot;Chiroptera&quot;      &quot;Cingulata&quot;      
+##  [7] &quot;Didelphimorphia&quot; &quot;Diprotodontia&quot;   &quot;quot;Erinaceomorpha&quot; 
+## [10] &quot;Hyracoidea&quot;      &quot;Lagomorpha&quot;      &quot;Monotremata&quot;    
+## [13] &quot;Perissodactyla&quot;  &quot;Pilosa&quot;          &quot;Primates&quot;       
+## [16] &quot;Proboscidea&quot;     &quot;Rodentia&quot;        &quot;Scandentia&quot;     
+## [19] &quot;Soricomorpha&quot;</code></pre>
+<pre class="r"><code>table(df$order) #统计出每个因子的个数</code></pre>
+<pre><code>## 
+##    Afrosoricida    Artiodactyla       Carnivora         Cetacea 
+##               1               6              12               3 
+##      Chiroptera       Cingulata Didelphimorphia   Diprotodontia 
+##               2               2               2               2 
+##  Erinaceomorpha      Hyracoidea      Lagomorpha     Monotremata 
+##               2               3               1               1 
+##  Perissodactyla          Pilosa        Primates     Proboscidea 
+##               3               1              12               2 
+##        Rodentia      Scandentia    Soricomorpha 
+##              22               1               5</code></pre>
+<p>split</p>
+<pre class="r"><code>s&lt;-split(df$sleep_total,df$order) #把表格分列成list，这个list里面包含了所有分列出的表
+s #通过length(s)可以查看分列出19个表格。</code></pre>
+<pre><code>## $Afrosoricida
+## [1] 15.6
+## 
+## $Artiodactyla
+## [1] 4.0 3.0 5.3 1.9 3.8 9.1
+## 
+## $Carnivora
+##  [1] 12.1  8.7 10.1 12.5  6.2 15.8 10.4 13.5  3.5  6.3 12.5  9.8
+## 
+## $Cetacea
+## [1] 2.7 5.6 5.2
+## 
+## $Chiroptera
+## [1] 19.7 19.9
+## 
+## $Cingulata
+## [1] 17.4 18.1
+## 
+## $Didelphimorphia
+## [1] 18.0 19.4
+## 
+## $Diprotodontia
+## [1] 13.7 11.1
+## 
+## $Erinaceomorpha
+## [1] 10.1 10.3
+## 
+## $Hyracoidea
+## [1] 5.3 6.3 5.4
+## 
+## $Lagomorpha
+## [1] 8.4
+## 
+## $Monotremata
+## [1] 8.6
+## 
+## $Perissodactyla
+## [1] 2.9 3.1 4.4
+## 
+## $Pilosa
+## [1] 14.4
+## 
+## $Primates
+##  [1] 17.0 10.0 10.9  9.8  8.0  9.5 10.1 11.0  9.7  9.4 11.0  9.6
+## 
+## $Proboscidea
+## [1] 3.9 3.3
+## 
+## $Rodentia
+##  [1] 14.4  7.0  9.4 12.5  8.3 14.9 14.2 14.3 12.8 12.5 14.6  7.7 14.5 11.5
+## [15] 13.0  8.7 11.3 10.6 16.6 13.8 15.9 15.8
+## 
+## $Scandentia
+## [1] 8.9
+## 
+## $Soricomorpha
+## [1] 14.9 10.3  9.1  8.4 12.8</code></pre>
+<pre class="r"><code>s[[1]]</code></pre>
+<pre><code>## [1] 15.6</code></pre>
+<pre class="r"><code>mean(s[[&quot;Rodentia&quot;]]) #查找某一类时，只能用[[]]符号，如果是字符型则需加&quot;&quot;。</code></pre>
+<pre><code>## [1] 12.46818</code></pre>
+<p>lapply,sapply, tapply</p>
+<pre class="r"><code>lapply(s,mean) #laaply指对list使用，输出为一个list。这个命令可以高效的做同时运算。</code></pre>
+<pre><code>## $Afrosoricida
+## [1] 15.6
+## 
+## $Artiodactyla
+## [1] 4.516667
+## 
+## $Carnivora
+## [1] 10.11667
+## 
+## $Cetacea
+## [1] 4.5
+## 
+## $Chiroptera
+## [1] 19.8
+## 
+## $Cingulata
+## [1] 17.75
+## 
+## $Didelphimorphia
+## [1] 18.7
+## 
+## $Diprotodontia
+## [1] 12.4
+## 
+## $Erinaceomorpha
+## [1] 10.2
+## 
+## $Hyracoidea
+## [1] 5.666667
+## 
+## $Lagomorpha
+## [1] 8.4
+## 
+## $Monotremata
+## [1] 8.6
+## 
+## $Perissodactyla
+## [1] 3.466667
+## 
+## $Pilosa
+## [1] 14.4
+## 
+## $Primates
+## [1] 10.5
+## 
+## $Proboscidea
+## [1] 3.6
+## 
+## $Rodentia
+## [1] 12.46818
+## 
+## $Scandentia
+## [1] 8.9
+## 
+## $Soricomorpha
+## [1] 11.1</code></pre>
+<pre class="r"><code>sapply(s,mean) #“similify”，原理同上，但是输出的结果直接是一个vector。</code></pre>
+<pre><code>##    Afrosoricida    Artiodactyla       Carnivora         Cetacea 
+##       15.600000        4.516667       10.116667        4.500000 
+##      Chiroptera       Cingulata Didelphimorphia   Diprotodontia 
+##       19.800000       17.750000       18.700000       12.400000 
+##  Erinaceomorpha      Hyracoidea      Lagomorpha     Monotremata 
+##       10.200000        5.666667        8.400000        8.600000 
+##  Perissodactyla          Pilosa        Primates     Proboscidea 
+##        3.466667       14.400000       10.500000        3.600000 
+##        Rodentia      Scandentia    Soricomorpha 
+##       12.468182        8.900000       11.100000</code></pre>
+<pre class="r"><code>tapply(df$sleep_total,df$order,mean) #综合了split和sapply，直接输入指定参数，输出目的值并保存于向量中。</code></pre>
+<pre><code>##    Afrosoricida    Artiodactyla       Carnivora         Cetacea 
+##       15.600000        4.516667       10.116667        4.500000 
+##      Chiroptera       Cingulata Didelphimorphia   Diprotodontia 
+##       19.800000       17.750000       18.700000       12.400000 
+##  Erinaceomorpha      Hyracoidea      Lagomorpha     Monotremata 
+##       10.200000        5.666667        8.400000        8.600000 
+##  Perissodactyla          Pilosa        Primates     Proboscidea 
+##        3.466667       14.400000       10.500000        3.600000 
+##        Rodentia      Scandentia    Soricomorpha 
+##       12.468182        8.900000       11.100000</code></pre>
+<pre class="r"><code>tapply(df$sleep_total,df$order==&quot;Primates&quot;, sd) #计算所有Primates总睡眠时间的标准差。</code></pre>
+<pre><code>##    FALSE     TRUE 
+## 4.736310 2.209895</code></pre>
+<p>也可按下计算</p>
+<pre class="r"><code>lapply(s,sd)</code></pre>
+<pre><code>## $Afrosoricida
+## [1] NA
+## 
+## $Artiodactyla
+## [1] 2.511905
+## 
+## $Carnivora
+## [1] 3.502164
+## 
+## $Cetacea
+## [1] 1.571623
+## 
+## $Chiroptera
+## [1] 0.1414214
+## 
+## $Cingulata
+## [1] 0.4949747
+## 
+## $Didelphimorphia
+## [1] 0.9899495
+## 
+## $Diprotodontia
+## [1] 1.838478
+## 
+## $Erinaceomorpha
+## [1] 0.1414214
+## 
+## $Hyracoidea
+## [1] 0.5507571
+## 
+## $Lagomorpha
+## [1] NA
+## 
+## $Monotremata
+## [1] NA
+## 
+## $Perissodactyla
+## [1] 0.8144528
+## 
+## $Pilosa
+## [1] NA
+## 
+## $Primates
+## [1] 2.209895
+## 
+## $Proboscidea
+## [1] 0.4242641
+## 
+## $Rodentia
+## [1] 2.813299
+## 
+## $Scandentia
+## [1] NA
+## 
+## $Soricomorpha
+## [1] 2.704626</code></pre>
+<pre class="r"><code>sapply(s, sd)</code></pre>
+<pre><code>##    Afrosoricida    Artiodactyla       Carnivora         Cetacea 
+##              NA       2.5119050       3.5021638       1.5716234 
+##      Chiroptera       Cingulata Didelphimorphia   Diprotodontia 
+##       0.1414214       0.4949747       0.9899495       1.8384776 
+##  Erinaceomorpha      Hyracoidea      Lagomorpha     Monotremata 
+##       0.1414214       0.5507571              NA              NA 
+##  Perissodactyla          Pilosa        Primates     Proboscidea 
+##       0.8144528              NA       2.2098951       0.4242641 
+##        Rodentia      Scandentia    Soricomorpha 
+##       2.8132994              NA       2.7046257</code></pre>
+<pre class="r"><code>tapply(df$sleep_total,df$order,sd)</code></pre>
+<pre><code>##    Afrosoricida    Artiodactyla       Carnivora         Cetacea 
+##              NA       2.5119050       3.5021638       1.5716234 
+##      Chiroptera       Cingulata Didelphimorphia   Diprotodontia 
+##       0.1414214       0.4949747       0.9899495       1.8384776 
+##  Erinaceomorpha      Hyracoidea      Lagomorpha     Monotremata 
+##       0.1414214       0.5507571              NA              NA 
+##  Perissodactyla          Pilosa        Primates     Proboscidea 
+##       0.8144528              NA       2.2098951       0.4242641 
+##        Rodentia      Scandentia    Soricomorpha 
+##       2.8132994              NA       2.7046257</code></pre>
+
+
+<p></p>
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<p><br></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[摘要最后写吧。附加一段文章摘要，字数最好在140字以内。]]>
+    
+    </summary>
+    
+      <category term="R" scheme="http://cthgj.me/tags/R/"/>
+    
+      <category term="apply" scheme="http://cthgj.me/tags/apply/"/>
+    
+      <category term="R" scheme="http://cthgj.me/categories/R/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[对于生物学测序数据的思路分析]]></title>
+    <link href="http://cthgj.me/2015/05/19/%E5%AF%B9%E4%BA%8E%E7%94%9F%E7%89%A9%E5%AD%A6%E6%B5%8B%E5%BA%8F%E6%95%B0%E6%8D%AE%E7%9A%84%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/"/>
+    <id>http://cthgj.me/2015/05/19/对于生物学测序数据的思路分析/</id>
+    <published>2015-05-19T15:24:51.000Z</published>
+    <updated>2015-05-19T15:41:51.912Z</updated>
+    <content type="html"><![CDATA[<ul>
+<li>对于测序结果，常问的问题：<ul>
+<li><strong>某一类</strong>基因的表达变化量如何？<br>这个某一类包含的信息有：<br>1.基本的筛选过程：<ul>
+<li>p-value or adjust p-value ( &lt;0.05, 0.01, 0.001);</li>
+<li>Log2FoldChange (abs &gt;=1, or 2);</li>
+<li>baseMean (&gt;0, or other values);</li>
+<li>FDR;<br>2.用户定义的筛选过程（user interested）：</li>
+<li>各个baseMean百分比下的整体基因变化趋势，</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[摘要最后写吧。附加一段文章摘要，字数最好在140字以内。]]>
+    
+    </summary>
+    
+      <category term="数据分析" scheme="http://cthgj.me/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+    
+      <category term="生物学过程" scheme="http://cthgj.me/tags/%E7%94%9F%E7%89%A9%E5%AD%A6%E8%BF%87%E7%A8%8B/"/>
+    
+      <category term="组学" scheme="http://cthgj.me/tags/%E7%BB%84%E5%AD%A6/"/>
+    
+      <category term="数据分析思路" scheme="http://cthgj.me/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%80%9D%E8%B7%AF/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Markdown格式]]></title>
     <link href="http://cthgj.me/2015/05/13/Markdown%E6%A0%BC%E5%BC%8F/"/>
     <id>http://cthgj.me/2015/05/13/Markdown格式/</id>
     <published>2015-05-13T19:36:35.000Z</published>
-    <updated>2015-05-17T12:28:05.009Z</updated>
+    <updated>2015-05-18T19:02:37.190Z</updated>
     <content type="html"><![CDATA[<p>初学markdown，很多格式都不清楚，因此本文旨在根据成文的顺序，搜集各博客后总结出语法，以供自己后续练习作参考。</p>
 <h1 id="1-_标题">1. 标题</h1><p>Markdown中，只需要在文本前面加上 # 即可，同理、还可以增加二级标题、三级标题、四级标题、五级标题和六级标题，总共六级，只需要增加  # 即可，标题字号相应降低。例如：<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#一级标题</span></span><br><span class="line"><span class="preprocessor">##二级标题</span></span><br><span class="line">...</span><br><span class="line"><span class="preprocessor">###### 六级标题</span></span><br></pre></td></tr></table></figure></p>
 <p>效果是这样：</p>
@@ -143,8 +632,8 @@
 </tr>
 </tbody>
 </table>
-<p>按照</p>
 <p>基本上就这些了，等需要时再更新。</p>
+<p>最后，由于使用jacman主题，最好使用如下语法写：<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">title: postName #文章页面上的显示名称，可以任意修改，不会出现在URL中</span><br><span class="line">date: 2013-12-02 15:30:16 #文章生成时间，一般不改，当然也可以任意修改</span><br><span class="line">categories: example #分类</span><br><span class="line">tags: [tag1,tag2,tag3] #文章标签，可空，多标签请用格式，注意:后面有个空格</span><br><span class="line"><span class="header">description: 附加一段文章摘要，字数最好在140字以内。</span><br><span class="line">---</span></span><br></pre></td></tr></table></figure></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>初学markdown，很多格式都不清楚，因此本文旨在根据成文的顺序，搜集各博客后总结出语法，以供自己后续练习作参考。</p>
@@ -195,21 +684,6 @@
     <summary type="html">
     <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
     </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[新博]]></title>
-    <link href="http://cthgj.me/2015/05/11/%E6%96%B0%E5%8D%9A/"/>
-    <id>http://cthgj.me/2015/05/11/新博/</id>
-    <published>2015-05-11T21:48:25.000Z</published>
-    <updated>2015-05-11T21:48:59.350Z</updated>
-    <content type="html"></content>
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="test" scheme="http://cthgj.me/tags/test/"/>
     
   </entry>
   

@@ -1,0 +1,894 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>R基本命令(不完全记录） | HUGO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="瓜西德咧">
+    
+
+    
+    <meta name="description" content="摘要最后写吧。附加一段文章摘要，字数最好在140字以内。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R基本命令(不完全记录）">
+<meta property="og:url" content="http://cthgj.me/2015/05/19/R基本命令-不完全记录）/index.html">
+<meta property="og:site_name" content="HUGO">
+<meta property="og:description" content="摘要最后写吧。附加一段文章摘要，字数最好在140字以内。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="R基本命令(不完全记录）">
+<meta name="twitter:description" content="摘要最后写吧。附加一段文章摘要，字数最好在140字以内。">
+<link rel="publisher" href="109110535946297068779">
+
+    
+    <link rel="alternative" href="/atom.xml" title="HUGO" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="HUGO">HUGO</a></h1>
+				<h2 class="blog-motto">先做</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+						<li><a href="/Categories">Categories</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:cthgj.me">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/19/R基本命令-不完全记录）/" title="R基本命令(不完全记录）" itemprop="url">R基本命令(不完全记录）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="https://plus.google.com/109110535946297068779?rel=author" title="瓜西德咧" target="_blank" itemprop="author">瓜西德咧</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-19T21:36:07.000Z" itemprop="datePublished"> 發表於 2015-05-19</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			
+		
+		</div>
+		
+		<p></p><p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" target="_blank" rel="external">http://rmarkdown.rstudio.com</a>.</p><p></p>
+<p></p><p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. </p>
+<p></p><p>查看getwd()当前工作路径;设定setwd()工作路径;</p><p></p>
+<pre class="r"><code>getwd()</code></pre>
+<pre><code>## [1] &quot;D:/On-learning/R&amp;Statistic_life_science/R_basics&quot;</code></pre>
+<pre class="r"><code>setwd(&quot;D:/On-learning/R&amp;Statistic_life_science/R_basics/&quot;) </code></pre>
+<p>下载数据。需要downloader包，download语法如下： download(“<a href="https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/" target="_blank" rel="external">https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/</a>”,“msleep_ggplot2.csv”)</p>
+<p>导入数据。对于不同的类型的数据格式需用不同的导入函数，一般是read.table, read.csv, read.dataframe… 如果数据表格中没有标题行，则需加入 header=FASLE，数据中的每列标题则是V1，V2…等，可以用df$V1等取子集；默认包含标题，标题行是第一行。</p>
+<pre class="r"><code>df &lt;- read.csv(&quot;msleep_ggplot2.csv&quot;, header = TRUE)</code></pre>
+<p>查看数据基本信息：head，tail，dim，summary，typeof等。</p>
+<pre class="r"><code>head(df) #表头</code></pre>
+<pre><code>##                         name      genus  vore        order conservation
+## 1                    Cheetah   Acinonyx carni    Carnivora           lc
+## 2                 Owl monkey      Aotus  omni     Primates         &lt;NA&gt;
+## 3            Mountain beaver Aplodontia herbi     Rodentia           nt
+## 4 Greater short-tailed shrew    Blarina  omni Soricomorpha           lc
+## 5                        Cow        Bos herbi Artiodactyla domesticated
+## 6           Three-toed sloth   Bradypus herbi       Pilosa         &lt;NA&gt;
+##   sleep_total sleep_rem sleep_cycle awake brainwt  bodywt
+## 1        12.1        NA          NA  11.9      NA  50.000
+## 2        17.0       1.8          NA   7.0 0.01550   0.480
+## 3        14.4       2.4          NA   9.6      NA   1.350
+## 4        14.9       2.3   0.1333333   9.1 0.00029   0.019
+## 5         4.0       0.7   0.6666667  20.0 0.42300 600.000
+## 6        14.4       2.2   0.7666667   9.6      NA   3.850</code></pre>
+<pre class="r"><code>dim(df)</code></pre>
+<pre><code>## [1] 83 11</code></pre>
+<pre class="r"><code>summary(df$sleep_total)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1.90    7.85   10.10   10.43   13.75   19.90</code></pre>
+
+<p></p><p>对导入的数据进行筛选，排查，标准化</p><p></p>
+<p></p><p>对部分数据进行分析时，需要取子集[]。常用的是某行/列，连续或指定的几行/几列，满足条件的行/列；</p><p></p>
+<pre class="r"><code>df.head.5 &lt;-df[c(1:5),] #对前五行取子集,等同于head(df,5)。构建一个向量指定具体行，如c(2,3,6,7)
+df.any.3 &lt;- df[sample(1:11,3,replace=F),] #对任意（非重复）3行取子集
+df.high.sleep &lt;-df[df$sleep_total &gt;18,] #df$sleep_total&gt;=18即是一个逻辑值组成的向量，表示所有满足条件的行。【通过逻辑值得到数值数据】
+df.highest.sleep &lt;- df[df$sleep_total==max(df$sleep_total,na.rm=T),] #去除na值之后，取sleep_total值为最大的那一行。
+mean(df[df$sleep_total&gt;18,]$sleep_total) #计算sleep_total大于18的平均值。</code></pre>
+<pre><code>## [1] 19.275</code></pre>
+<p>对向量vector的几种常用操作。包括查找(which,match)，排序(sort, order, rank) #which</p>
+<pre class="r"><code>which(df$sleep_total&gt;18) #得到满足条件的**行号**！注意，是**行号**！组成数字索引(numeric index)。然后获得相应行的所有信息，即可用：</code></pre>
+<pre><code>## [1] 22 37 43 62</code></pre>
+<pre class="r"><code>df[which(df$sleep_total&gt;18),] #效果其实跟df[df$sleep_total &gt;18,]是一样的。**which**意思即是得到满足条件的**那些行号**。</code></pre>
+<pre><code>##                    name      genus    vore           order conservation
+## 22        Big brown bat  Eptesicus insecti      Chiroptera           lc
+## 37 Thick-tailed opposum Lutreolina   carni Didelphimorphia           lc
+## 43     Little brown bat     Myotis insecti      Chiroptera         &lt;NA&gt;
+## 62      Giant armadillo Priodontes insecti       Cingulata           en
+##    sleep_total sleep_rem sleep_cycle awake brainwt bodywt
+## 22        19.7       3.9   0.1166667   4.3 0.00030  0.023
+## 37        19.4       6.6          NA   4.6      NA  0.370
+## 43        19.9       2.0   0.2000000   4.1 0.00025  0.010
+## 62        18.1       6.1          NA   5.9 0.08100 60.000</code></pre>
+<pre class="r"><code>df$sleep_total[which(df$sleep_total &gt;18)[1]] #获得满足条件的第一行</code></pre>
+<pre><code>## [1] 19.7</code></pre>
+<pre class="r"><code>df.median.sleep&lt;-df[which(df$sleep_total &gt; quantile(df$sleep_total,probs = 50/100) &amp; df$sleep_rem&lt;3),]
+df.median.herbi&lt;-df[which(df$sleep_total &gt; quantile(df$sleep_total,probs = 50/100) &amp; df$vore==&quot;herbi&quot;),] #herbi中，输出sleep_total前50%的行信息。</code></pre>
+<p>三种排序方式 sort</p>
+<pre class="r"><code>sort(df$sleep_total) #得到满足条件的**值**！注意，这里是**值**！组成数字向量numeric values。</code></pre>
+<pre><code>##  [1]  1.9  2.7  2.9  3.0  3.1  3.3  3.5  3.8  3.9  4.0  4.4  5.2  5.3  5.3
+## [15]  5.4  5.6  6.2  6.3  6.3  7.0  7.7  8.0  8.3  8.4  8.4  8.6  8.7  8.7
+## [29]  8.9  9.1  9.1  9.4  9.4  9.5  9.6  9.7  9.8  9.8 10.0 10.1 10.1 10.1
+## [43] 10.3 10.3 10.4 10.6 10.9 11.0 11.0 11.1 11.3 11.5 12.1 12.5 12.5 12.5
+## [57] 12.5 12.8 12.8 13.0 13.5 13.7 13.8 14.2 14.3 14.4 14.4 14.5 14.6 14.9
+## [71] 14.9 15.6 15.8 15.8 15.9 16.6 17.0 17.4 18.0 18.1 19.4 19.7 19.9</code></pre>
+<pre class="r"><code>#查看df[sort(df$sleep_total),]$sleep_total与sort(df$sleep_total)的值是不同的。</code></pre>
+<p>order</p>
+<pre class="r"><code>order(df$sleep_total) #得到满足条件的**行号**！注意，是**行号**！组成数字索引(numeric index)。</code></pre>
+<pre><code>##  [1] 30 31 23 10 24 36 59 49 21  5 77 80 11 19 63 60 32 33 81  8 46 34 16
+## [24] 48 67 75  7 65 79 17 74 12 54 35 66 50 29 83 13  9 25 38 15 55 52 69
+## [47] 26 45 56 61 68 57  1 14 28 42 82 41 73 64 53 58 71 39 40  3  6 47 44
+## [70]  4 27 78 51 76 72 70  2 18 20 62 37 22 43</code></pre>
+<pre class="r"><code>#df[order(df$sleep_total),]$sleep_total与sort(df$sleep_total)的值是相同的。</code></pre>
+<p>rank</p>
+<pre class="r"><code>rank(df$sleep_total) #给个值排名，得到的是一个数值向量。</code></pre>
+<pre><code>##  [1] 53.0 77.0 66.5 70.5 10.0 66.5 27.5 20.0 41.0  4.0 13.5 32.5 39.0 55.5
+## [15] 43.5 23.0 30.5 78.0 13.5 79.0  9.0 82.0  3.0  5.0 41.0 47.0 70.5 55.5
+## [29] 37.5  1.0  2.0 17.0 18.5 22.0 34.0  6.0 81.0 41.0 64.0 65.0 58.5 55.5
+## [43] 83.0 69.0 48.5 21.0 68.0 24.5  8.0 36.0 73.5 45.0 61.0 32.5 43.5 48.5
+## [57] 52.0 62.0  7.0 16.0 50.0 80.0 15.0 60.0 27.5 35.0 24.5 51.0 46.0 76.0
+## [71] 63.0 75.0 58.5 30.5 26.0 73.5 11.0 72.0 29.0 12.0 18.5 55.5 37.5</code></pre>
+<pre class="r"><code>rank(c(1,2,2,3))</code></pre>
+<pre><code>## [1] 1.0 2.5 2.5 4.0</code></pre>
+<pre class="r"><code>#结果为[1] 1.0 2.5 2.5 4.0，共四个，两个并列第2.5</code></pre>
+<p>match</p>
+<pre class="r"><code>match(c(&quot;Cow&quot;,&quot;Owl monkey&quot;,&quot;Cheetah&quot;),df$name) #得到满足条件的**行号**！注意，是**行号**！组成数字索引(numeric index)。然后获得相应行的所有信息，即可用</code></pre>
+<pre><code>## [1] 5 2 1</code></pre>
+<pre class="r"><code>df[match(c(&quot;Cow&quot;,&quot;Owl monkey&quot;,&quot;Cheetah&quot;),df$name),] </code></pre>
+<pre><code>##         name    genus  vore        order conservation sleep_total
+## 5        Cow      Bos herbi Artiodactyla domesticated         4.0
+## 2 Owl monkey    Aotus  omni     Primates         &lt;NA&gt;        17.0
+## 1    Cheetah Acinonyx carni    Carnivora           lc        12.1
+##   sleep_rem sleep_cycle awake brainwt bodywt
+## 5       0.7   0.6666667  20.0  0.4230 600.00
+## 2       1.8          NA   7.0  0.0155   0.48
+## 1        NA          NA  11.9      NA  50.00</code></pre>
+<p>数据的组合grouping data factor: factor是把字符型向量转换成整数储存在，但同时具有levels属性，即用levels来分类。没有理解到。</p>
+<pre class="r"><code>vec = c(&quot;red&quot;,&quot;blue&quot;,&quot;red&quot;,&quot;green&quot;,&quot;green&quot;,&quot;yellow&quot;,&quot;orange&quot;)
+fac = factor(vec)
+fac</code></pre>
+<pre><code>## [1] red    blue   red    green  green  yellow orange
+## Levels: blue green orange red yellow</code></pre>
+<pre class="r"><code>levels(fac)</code></pre>
+<pre><code>## [1] &quot;blue&quot;   &quot;green&quot;  &quot;orange&quot; &quot;red&quot;    &quot;yellow&quot;</code></pre>
+<p>table</p>
+<pre class="r"><code>levels(df$order)</code></pre>
+<pre><code>##  [1] &quot;Afrosoricida&quot;    &quot;Artiodactyla&quot;    &quot;Carnivora&quot;      
+##  [4] &quot;Cetacea&quot;         &quot;Chiroptera&quot;      &quot;Cingulata&quot;      
+##  [7] &quot;Didelphimorphia&quot; &quot;Diprotodontia&quot;   &quot;quot;Erinaceomorpha&quot; 
+## [10] &quot;Hyracoidea&quot;      &quot;Lagomorpha&quot;      &quot;Monotremata&quot;    
+## [13] &quot;Perissodactyla&quot;  &quot;Pilosa&quot;          &quot;Primates&quot;       
+## [16] &quot;Proboscidea&quot;     &quot;Rodentia&quot;        &quot;Scandentia&quot;     
+## [19] &quot;Soricomorpha&quot;</code></pre>
+<pre class="r"><code>table(df$order) #统计出每个因子的个数</code></pre>
+<pre><code>## 
+##    Afrosoricida    Artiodactyla       Carnivora         Cetacea 
+##               1               6              12               3 
+##      Chiroptera       Cingulata Didelphimorphia   Diprotodontia 
+##               2               2               2               2 
+##  Erinaceomorpha      Hyracoidea      Lagomorpha     Monotremata 
+##               2               3               1               1 
+##  Perissodactyla          Pilosa        Primates     Proboscidea 
+##               3               1              12               2 
+##        Rodentia      Scandentia    Soricomorpha 
+##              22               1               5</code></pre>
+<p>split</p>
+<pre class="r"><code>s&lt;-split(df$sleep_total,df$order) #把表格分列成list，这个list里面包含了所有分列出的表
+s #通过length(s)可以查看分列出19个表格。</code></pre>
+<pre><code>## $Afrosoricida
+## [1] 15.6
+## 
+## $Artiodactyla
+## [1] 4.0 3.0 5.3 1.9 3.8 9.1
+## 
+## $Carnivora
+##  [1] 12.1  8.7 10.1 12.5  6.2 15.8 10.4 13.5  3.5  6.3 12.5  9.8
+## 
+## $Cetacea
+## [1] 2.7 5.6 5.2
+## 
+## $Chiroptera
+## [1] 19.7 19.9
+## 
+## $Cingulata
+## [1] 17.4 18.1
+## 
+## $Didelphimorphia
+## [1] 18.0 19.4
+## 
+## $Diprotodontia
+## [1] 13.7 11.1
+## 
+## $Erinaceomorpha
+## [1] 10.1 10.3
+## 
+## $Hyracoidea
+## [1] 5.3 6.3 5.4
+## 
+## $Lagomorpha
+## [1] 8.4
+## 
+## $Monotremata
+## [1] 8.6
+## 
+## $Perissodactyla
+## [1] 2.9 3.1 4.4
+## 
+## $Pilosa
+## [1] 14.4
+## 
+## $Primates
+##  [1] 17.0 10.0 10.9  9.8  8.0  9.5 10.1 11.0  9.7  9.4 11.0  9.6
+## 
+## $Proboscidea
+## [1] 3.9 3.3
+## 
+## $Rodentia
+##  [1] 14.4  7.0  9.4 12.5  8.3 14.9 14.2 14.3 12.8 12.5 14.6  7.7 14.5 11.5
+## [15] 13.0  8.7 11.3 10.6 16.6 13.8 15.9 15.8
+## 
+## $Scandentia
+## [1] 8.9
+## 
+## $Soricomorpha
+## [1] 14.9 10.3  9.1  8.4 12.8</code></pre>
+<pre class="r"><code>s[[1]]</code></pre>
+<pre><code>## [1] 15.6</code></pre>
+<pre class="r"><code>mean(s[[&quot;Rodentia&quot;]]) #查找某一类时，只能用[[]]符号，如果是字符型则需加&quot;&quot;。</code></pre>
+<pre><code>## [1] 12.46818</code></pre>
+<p>lapply,sapply, tapply</p>
+<pre class="r"><code>lapply(s,mean) #laaply指对list使用，输出为一个list。这个命令可以高效的做同时运算。</code></pre>
+<pre><code>## $Afrosoricida
+## [1] 15.6
+## 
+## $Artiodactyla
+## [1] 4.516667
+## 
+## $Carnivora
+## [1] 10.11667
+## 
+## $Cetacea
+## [1] 4.5
+## 
+## $Chiroptera
+## [1] 19.8
+## 
+## $Cingulata
+## [1] 17.75
+## 
+## $Didelphimorphia
+## [1] 18.7
+## 
+## $Diprotodontia
+## [1] 12.4
+## 
+## $Erinaceomorpha
+## [1] 10.2
+## 
+## $Hyracoidea
+## [1] 5.666667
+## 
+## $Lagomorpha
+## [1] 8.4
+## 
+## $Monotremata
+## [1] 8.6
+## 
+## $Perissodactyla
+## [1] 3.466667
+## 
+## $Pilosa
+## [1] 14.4
+## 
+## $Primates
+## [1] 10.5
+## 
+## $Proboscidea
+## [1] 3.6
+## 
+## $Rodentia
+## [1] 12.46818
+## 
+## $Scandentia
+## [1] 8.9
+## 
+## $Soricomorpha
+## [1] 11.1</code></pre>
+<pre class="r"><code>sapply(s,mean) #“similify”，原理同上，但是输出的结果直接是一个vector。</code></pre>
+<pre><code>##    Afrosoricida    Artiodactyla       Carnivora         Cetacea 
+##       15.600000        4.516667       10.116667        4.500000 
+##      Chiroptera       Cingulata Didelphimorphia   Diprotodontia 
+##       19.800000       17.750000       18.700000       12.400000 
+##  Erinaceomorpha      Hyracoidea      Lagomorpha     Monotremata 
+##       10.200000        5.666667        8.400000        8.600000 
+##  Perissodactyla          Pilosa        Primates     Proboscidea 
+##        3.466667       14.400000       10.500000        3.600000 
+##        Rodentia      Scandentia    Soricomorpha 
+##       12.468182        8.900000       11.100000</code></pre>
+<pre class="r"><code>tapply(df$sleep_total,df$order,mean) #综合了split和sapply，直接输入指定参数，输出目的值并保存于向量中。</code></pre>
+<pre><code>##    Afrosoricida    Artiodactyla       Carnivora         Cetacea 
+##       15.600000        4.516667       10.116667        4.500000 
+##      Chiroptera       Cingulata Didelphimorphia   Diprotodontia 
+##       19.800000       17.750000       18.700000       12.400000 
+##  Erinaceomorpha      Hyracoidea      Lagomorpha     Monotremata 
+##       10.200000        5.666667        8.400000        8.600000 
+##  Perissodactyla          Pilosa        Primates     Proboscidea 
+##        3.466667       14.400000       10.500000        3.600000 
+##        Rodentia      Scandentia    Soricomorpha 
+##       12.468182        8.900000       11.100000</code></pre>
+<pre class="r"><code>tapply(df$sleep_total,df$order==&quot;Primates&quot;, sd) #计算所有Primates总睡眠时间的标准差。</code></pre>
+<pre><code>##    FALSE     TRUE 
+## 4.736310 2.209895</code></pre>
+<p>也可按下计算</p>
+<pre class="r"><code>lapply(s,sd)</code></pre>
+<pre><code>## $Afrosoricida
+## [1] NA
+## 
+## $Artiodactyla
+## [1] 2.511905
+## 
+## $Carnivora
+## [1] 3.502164
+## 
+## $Cetacea
+## [1] 1.571623
+## 
+## $Chiroptera
+## [1] 0.1414214
+## 
+## $Cingulata
+## [1] 0.4949747
+## 
+## $Didelphimorphia
+## [1] 0.9899495
+## 
+## $Diprotodontia
+## [1] 1.838478
+## 
+## $Erinaceomorpha
+## [1] 0.1414214
+## 
+## $Hyracoidea
+## [1] 0.5507571
+## 
+## $Lagomorpha
+## [1] NA
+## 
+## $Monotremata
+## [1] NA
+## 
+## $Perissodactyla
+## [1] 0.8144528
+## 
+## $Pilosa
+## [1] NA
+## 
+## $Primates
+## [1] 2.209895
+## 
+## $Proboscidea
+## [1] 0.4242641
+## 
+## $Rodentia
+## [1] 2.813299
+## 
+## $Scandentia
+## [1] NA
+## 
+## $Soricomorpha
+## [1] 2.704626</code></pre>
+<pre class="r"><code>sapply(s, sd)</code></pre>
+<pre><code>##    Afrosoricida    Artiodactyla       Carnivora         Cetacea 
+##              NA       2.5119050       3.5021638       1.5716234 
+##      Chiroptera       Cingulata Didelphimorphia   Diprotodontia 
+##       0.1414214       0.4949747       0.9899495       1.8384776 
+##  Erinaceomorpha      Hyracoidea      Lagomorpha     Monotremata 
+##       0.1414214       0.5507571              NA              NA 
+##  Perissodactyla          Pilosa        Primates     Proboscidea 
+##       0.8144528              NA       2.2098951       0.4242641 
+##        Rodentia      Scandentia    Soricomorpha 
+##       2.8132994              NA       2.7046257</code></pre>
+<pre class="r"><code>tapply(df$sleep_total,df$order,sd)</code></pre>
+<pre><code>##    Afrosoricida    Artiodactyla       Carnivora         Cetacea 
+##              NA       2.5119050       3.5021638       1.5716234 
+##      Chiroptera       Cingulata Didelphimorphia   Diprotodontia 
+##       0.1414214       0.4949747       0.9899495       1.8384776 
+##  Erinaceomorpha      Hyracoidea      Lagomorpha     Monotremata 
+##       0.1414214       0.5507571              NA              NA 
+##  Perissodactyla          Pilosa        Primates     Proboscidea 
+##       0.8144528              NA       2.2098951       0.4242641 
+##        Rodentia      Scandentia    Soricomorpha 
+##       2.8132994              NA       2.7046257</code></pre>
+
+
+<p></p>
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<p><br></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/R/">R</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/R/">R</a><a href="/tags/apply/">apply</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://cthgj.me/2015/05/19/R基本命令-不完全记录）/" data-title="R基本命令(不完全记录） | HUGO" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/05/21/随机抽样中覆盖率、重复率概率分析/" title="随机抽样中覆盖率、重复率概率分析">
+  <strong>上一篇：</strong><br/>
+  <span>
+  随机抽样中覆盖率、重复率概率分析</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/05/19/对于生物学测序数据的思路分析/"  title="对于生物学测序数据的思路分析">
+ <strong>下一篇：</strong><br/> 
+ <span>对于生物学测序数据的思路分析
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/R/" title="R">R<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数据分析思路/" title="数据分析思路">数据分析思路<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/统计与R/" title="统计与R">统计与R<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/组学/" title="组学">组学<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/生物学过程/" title="生物学过程">生物学过程<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/apply/" title="apply">apply<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/统计学/" title="统计学">统计学<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://scholar.google.com" target="_blank" title="Google_scholar">Google_scholar</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.qiuworld.com:8080/" target="_blank" title="糗世界">糗世界</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.bjt.name" target="_blank" title="刘思喆">刘思喆</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://yihui.name" target="_blank" title="谢益辉">谢益辉</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://simplystatistics.org/" target="_blank" title="Roger D. Peng">Roger D. Peng</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello, I&#39;m Guojian. <br/>
+			Aha, what a wonderful world!</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/e-tomato" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		<a href="https://www.facebook.com/hu.guojian" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		<a href="https://plus.google.com/109110535946297068779?rel=author" target="_blank" class="icon-google_plus" title="Google+"></a>
+		
+		
+		<a href="mailto:hu.guojian0309@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="瓜西德咧">瓜西德咧</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'cthgj';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
