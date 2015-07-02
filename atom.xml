@@ -4,7 +4,7 @@
   <subtitle><![CDATA[先做]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://cthgj.me/"/>
-  <updated>2015-06-06T16:27:35.627Z</updated>
+  <updated>2015-07-02T20:47:51.822Z</updated>
   <id>http://cthgj.me/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://cthgj.me/2015/06/06/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0-%E4%B8%80/"/>
     <id>http://cthgj.me/2015/06/06/概率统计学习-一/</id>
     <published>2015-06-06T15:25:43.000Z</published>
-    <updated>2015-06-06T16:27:35.627Z</updated>
+    <updated>2015-07-02T20:47:51.822Z</updated>
     <content type="html"><![CDATA[<p>刚在看吴喜之教授的《统计学：从数据到结论》中发现很多以前没想到的很有意思的概念。</p>
 <p><strong>Questionnaire</strong>，我以前一直只认为它是市场营销类的专业词。其实，对各个需要得到数据的科学领域，这个表是引导获取原始数据的最关键环节，更是引导深入分析的支持点。基于个人的理解，一份questionnaire应该需要这些思路：</p>
 <ul>
@@ -27,13 +27,13 @@
 <li>获得该基因的所有能获得的背景信息（包括基因序列，保守结构域分析，表达谱，定位分析，进化分析，启动子分析，同源基因功能备注等等），准备制作问卷表；</li>
 <li>根据突变缺失或超表达（研究单基因必需的步骤），问在哪些组织具有表型（这个通常不会太多，一般只是几个focus），分类分层次，标定为N个tissue.level；</li>
 <li>在不同tissue.level上，非正常/正常值比例（显著吗？），非正常值在器官和细胞层次的不同指标（这个得需要寻找类似研究作参考）的变化。同样分层次，标定为N个organ.level和cell.level<br>（如观察到花出现表型，多少花不正常？不正常的花出现在哪些位置？各个花器官数量是多少？各花器官的大小是否发生变化？分化出该器官的花的细胞数量是否发生变化？细胞位置，细胞大小，形态等是否发生变化？等等）</li>
-<li>基于不同level下的表型，寻找，分析，推断可能的具有关联性的基因（关联性包括上游，下游，平等）。如果文献支撑强的话，问：我找到的这些基因是否可以具有这种关系，是哪种关系？然后就可以直接试验（包括转录和蛋白水平的检测，DNA蛋白互作，蛋白互作等）；如果无法顺利找到时，而花费又允许的情况下，RNA-seq 差异基因检测，ChIP-seq结合DNA检测，蛋白质差异检测直接上。</li>
+<li>基于不同level下的表型，寻找，分析，推断可能的具有关联性的基因（关联性包括上游，下游，平等）。如果文献支撑强的话，问：我找到的这些基因是否可以具有这种关系，是哪种关系？然后就可以直接试验（包括转录和蛋白水平的检测，DNA蛋白互作，蛋白互作等）；如果无法顺利找到时，而花费又允许的情况下，问是否可以用RNA-seq 差异基因检测，ChIP-seq结合DNA检测，蛋白质差异检测？</li>
 </ol>
 </li>
 </ul>
 ]]></content>
     <summary type="html">
-    <![CDATA[摘要最后写吧。附加一段文章摘要，字数最好在140字以内。]]>
+    <![CDATA[算是读书笔记吧。还是有一定意义。但分析的层次依旧不够。]]>
     
     </summary>
     
@@ -52,7 +52,7 @@
     <link href="http://cthgj.me/2015/05/21/%E9%9A%8F%E6%9C%BA%E6%8A%BD%E6%A0%B7%E4%B8%AD%E8%A6%86%E7%9B%96%E7%8E%87%E3%80%81%E9%87%8D%E5%A4%8D%E7%8E%87%E6%A6%82%E7%8E%87%E5%88%86%E6%9E%90/"/>
     <id>http://cthgj.me/2015/05/21/随机抽样中覆盖率、重复率概率分析/</id>
     <published>2015-05-21T14:42:05.000Z</published>
-    <updated>2015-05-21T16:42:36.904Z</updated>
+    <updated>2015-07-02T20:47:01.231Z</updated>
     <content type="html"><![CDATA[<p>问题1：从标有1-10号的球中，每次随机有放回的抽取10个球，至少重复多少次能把全部10个数字抽取完？每次试验100次，计算覆盖率的均值作为一次试验的结果。然后统计1个100次试验~1000个100次试验的覆盖率的plot图。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x&#60;-c()&#10;coverge&#60;-c()&#10;mean.cov &#60;-c()&#10;&#10;for (m in 1:1000)&#10;&#123; x[m]&#60;-m&#10;  for (n in 1:100)&#10;  &#123;&#10;    coverge[n]&#60;-length(levels(factor(sample(1:10,10,replace=T))))/10&#10;  &#125;&#10;  mean.cov[m] &#60;- mean(coverge)&#10;&#125;&#10;&#10;x&#10;summary(mean.cov)&#10;plot(x,mean.cov)</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>所以，1000次试验，覆盖率的均值基本不会变化(都在61.4~68.1%)。即单纯的重复有限次抽取并不能保证都抽到。（限制因子有：单次抽取的球的个数（10个，越多自然能得到更高覆盖率）、样本容量size（10个球，5个则是84.6%~92.8%，6个则是80%~88%，7个则是75%~82%，8个则是71%~77%，9个则是65%~73%）</li>
@@ -68,7 +68,8 @@
 </ul>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>问题1：从标有1-10号的球中，每次随机有放回的抽取10个球，至少重复多少次能把全部10个数字抽取完？每次试验100次，计算覆盖率的均值作为一次试验的结果。然后统计1个100次试验~1000个100次试验的覆盖率的plot图。<br><figure class="highl]]>
+    <![CDATA[10标有号的球，不同抽取方法，类比测序。]]>
+    
     </summary>
     
   </entry>
@@ -78,7 +79,7 @@
     <link href="http://cthgj.me/2015/05/19/R%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4-%E4%B8%8D%E5%AE%8C%E5%85%A8%E8%AE%B0%E5%BD%95%EF%BC%89/"/>
     <id>http://cthgj.me/2015/05/19/R基本命令-不完全记录）/</id>
     <published>2015-05-19T21:36:07.000Z</published>
-    <updated>2015-05-19T21:55:21.307Z</updated>
+    <updated>2015-07-02T20:46:04.877Z</updated>
     <content type="html"><![CDATA[<p></p><p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" target="_blank" rel="external">http://rmarkdown.rstudio.com</a>.</p><p></p>
 <p></p><p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. </p>
 <p></p><p>查看getwd()当前工作路径;设定setwd()工作路径;</p><p></p>
@@ -456,7 +457,7 @@ $(document).ready(function () {
 <p><br></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[摘要最后写吧。附加一段文章摘要，字数最好在140字以内。]]>
+    <![CDATA[根据Edex上的课程，重新根据自己的思路理一遍，方便以后查看。]]>
     
     </summary>
     
@@ -473,7 +474,7 @@ $(document).ready(function () {
     <link href="http://cthgj.me/2015/05/19/%E5%AF%B9%E4%BA%8E%E7%94%9F%E7%89%A9%E5%AD%A6%E6%B5%8B%E5%BA%8F%E6%95%B0%E6%8D%AE%E7%9A%84%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/"/>
     <id>http://cthgj.me/2015/05/19/对于生物学测序数据的思路分析/</id>
     <published>2015-05-19T15:24:51.000Z</published>
-    <updated>2015-05-19T15:41:51.912Z</updated>
+    <updated>2015-07-02T20:44:34.198Z</updated>
     <content type="html"><![CDATA[<ul>
 <li>对于测序结果，常问的问题：<ul>
 <li><strong>某一类</strong>基因的表达变化量如何？<br>这个某一类包含的信息有：<br>1.基本的筛选过程：<ul>
@@ -489,7 +490,7 @@ $(document).ready(function () {
 </ul>
 ]]></content>
     <summary type="html">
-    <![CDATA[摘要最后写吧。附加一段文章摘要，字数最好在140字以内。]]>
+    <![CDATA[现在以及将来测序会是最基本的技术，但是不管是genome-seq，RNA-seq，ChIP-seq等等，理解思路才是关键。]]>
     
     </summary>
     
