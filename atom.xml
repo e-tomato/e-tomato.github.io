@@ -1,25 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[HUGO]]></title>
-  <subtitle><![CDATA[先做]]></subtitle>
+  <title>Simple but Matters</title>
+  
   <link href="/atom.xml" rel="self"/>
+  
   <link href="http://cthgj.me/"/>
-  <updated>2015-07-02T20:47:51.822Z</updated>
+  <updated>2017-03-28T19:53:50.990Z</updated>
   <id>http://cthgj.me/</id>
   
   <author>
-    <name><![CDATA[瓜西德咧]]></name>
+    <name>e-tomato (GJ.H)</name>
     
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[概率统计学习-My Questionnaire]]></title>
+    <title>Summary of git and hexo for my web</title>
+    <link href="http://cthgj.me/2017/03/27/Summary-of-git-and-hexo-for-my-web/"/>
+    <id>http://cthgj.me/2017/03/27/Summary-of-git-and-hexo-for-my-web/</id>
+    <published>2017-03-27T20:49:29.000Z</published>
+    <updated>2017-03-28T19:53:50.990Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Protocol如下："><a href="#Protocol如下：" class="headerlink" title="Protocol如下："></a>Protocol如下：</h1><hr>
+<h2 id="1-配置文件"><a href="#1-配置文件" class="headerlink" title="1. 配置文件"></a>1. 配置文件</h2><ul>
+<li><p><strong>A.</strong> 按hexo网站下载必需的软件 (包括<a href="http://git-scm.com/" target="_blank" rel="external">git</a>和 <a href="http://nodejs.org/" target="_blank" rel="external">Node.js</a>) … &gt; … &gt; …&gt;。</p>
+</li>
+<li><p><strong>B.</strong> 根据theme修改主体的_config.yml以及主题的_config.yml文件 (参考网站：<a href="https://linghucong.js.org/2016/04/15/2016-04-15-hexo-github-pages-blog/" target="_blank" rel="external">博客搭建</a>，<a href="http://theme-next.iissnan.com/" target="_blank" rel="external">next</a>).然后不停的改配置，不停的改，直到自己满意为止。</p>
+</li>
+<li><p><strong>C.</strong> 连接GitHub分支通过Git (in bash)。</p>
+<blockquote>
+<p><strong>a)</strong> 本地创建公钥(public key)(参考<a href="https://help.github.com/articles/generating-an-ssh-key/" target="_blank" rel="external">github帮助</a>);</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -b 4096 -C &quot;xxx@gmail.com&quot; # xxx为注册邮箱地址</div></pre></td></tr></table></figure>
+<p><strong>b)</strong> 此时在windows user/.ssh目录下会生成两个文件，id_rsa.pub和id_rsa(<em>提示输入的密码不一定非得是github的密码</em>);<br><strong>c)</strong> 登陆github，在<a href="https://github.com/settings/keys" target="_blank" rel="external">SSH设置页面</a>添加上刚才的public key文件也就是<strong>id_rsa.pub</strong>的内容即可.<br><strong>注意：</strong>如果忘记了id_sra.pub的位置就重新生成新的key，具体参考github帮助(<a href="https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/" target="_blank" rel="external">点此</a> 还有<a href="https://help.github.com/articles/connecting-to-github-with-ssh/" target="_blank" rel="external">此</a>)，然后删掉旧的SSH key。</p>
+</blockquote>
+</li>
+<li><p><strong>D.</strong> 由于hexo deploy有时无法push到远程repo上去。所以还是用git来更新blog。</p>
+<blockquote>
+<p><strong>a)</strong> clone自己的repo (git bash)：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd /d/On-learning/Github/hexo/my_blog/</div><div class="line">git clone https://github.com/e-tomato/e-tomato.github.io.git .deploy/e-tomato.github.io</div><div class="line"># .deploy 文件的内容即是blog所需要的内容</div></pre></td></tr></table></figure>
+<p><strong>b)</strong> 在hexo中生成博客，复制public文件下的所有内容至 .deploy/e-tomato.github.io下，然后用git命令来更新修改或删除博客内容。以下是shell脚本deply.sh的内容：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">hexo generate</div><div class="line">cp -R ../public/* .deploy/e-tomato.github.io</div><div class="line">cd .deploy/e-tomato.github.io</div><div class="line">git add .</div><div class="line">git commit -m “update”</div><div class="line">git push origin master</div><div class="line">## 如果是删除文件： git rm xx ==&gt; git commit -m &quot;delete xx&quot; ==&gt;git push origin master;</div></pre></td></tr></table></figure>
+<p>部署过程中可能需要输入Github账户的用户名及密码，按照提示操作即可。</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h2 id="2-写博客"><a href="#2-写博客" class="headerlink" title="2. 写博客"></a>2. 写博客</h2><ul>
+<li><p><strong>A.</strong> 创建新博客 (md文件位于hexo/source/_posts/下)</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new &quot;title&quot;</div></pre></td></tr></table></figure>
+<p>博客格式如下(尽量给每篇文章加tags，逗号分隔)</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">title: Summary of git and hexo for my web</div><div class="line">date: 2017-03-27 22:49:29</div><div class="line">tags: hexo</div><div class="line">comments: false</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p><strong>B.</strong> 如果需要备份，复制该文件至my_blog/drafts.md/下进行修改，等完成后再发布。</p>
+</li>
+<li><p><strong>C.</strong> 生成博客:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo generate # 或者 hexo g</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>D.</strong> 本地查看<a href="http://localhost:4000" target="_blank" rel="external">localhost:4000</a>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo server # 或者直接 hexo s</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>E.</strong> 部署到网站:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo deploy</div><div class="line">##不行的话就用之前deploy.sh</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h1 id="THE-END"><a href="#THE-END" class="headerlink" title="THE END"></a>THE END</h1><hr>
+]]></content>
+    
+    <summary type="html">
+    
+      这篇文章记录下blog生成的过程，不复杂，但就是容易忘。
+    
+    </summary>
+    
+    
+      <category term="hexo" scheme="http://cthgj.me/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基因调控网络的演化层级关系</title>
+    <link href="http://cthgj.me/2015/07/02/%E5%9F%BA%E5%9B%A0%E8%B0%83%E6%8E%A7%E7%BD%91%E7%BB%9C%E7%9A%84%E6%BC%94%E5%8C%96%E5%B1%82%E7%BA%A7%E5%85%B3%E7%B3%BB/"/>
+    <id>http://cthgj.me/2015/07/02/基因调控网络的演化层级关系/</id>
+    <published>2015-07-02T20:52:05.000Z</published>
+    <updated>2015-07-02T20:57:48.109Z</updated>
+    
+    <content type="html"><![CDATA[<p>来源是Nature review上的一篇opinion：The evolution of hierarchical gene regulatory networks, 作者Dougloas H.Erwin和Eric H.Davidson</p>
+]]></content>
+    
+    <summary type="html">
+    
+      介绍基因调控网络为何保持保守性？并逐步演化发展和丰富其层级性。
+    
+    </summary>
+    
+    
+      <category term="GRN，hierarchical" scheme="http://cthgj.me/tags/GRN%EF%BC%8Chierarchical/"/>
+    
+      <category term="evolution" scheme="http://cthgj.me/tags/evolution/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>概率统计学习-My Questionnaire</title>
     <link href="http://cthgj.me/2015/06/06/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0-%E4%B8%80/"/>
     <id>http://cthgj.me/2015/06/06/概率统计学习-一/</id>
     <published>2015-06-06T15:25:43.000Z</published>
     <updated>2015-07-02T20:47:51.822Z</updated>
+    
     <content type="html"><![CDATA[<p>刚在看吴喜之教授的《统计学：从数据到结论》中发现很多以前没想到的很有意思的概念。</p>
 <p><strong>Questionnaire</strong>，我以前一直只认为它是市场营销类的专业词。其实，对各个需要得到数据的科学领域，这个表是引导获取原始数据的最关键环节，更是引导深入分析的支持点。基于个人的理解，一份questionnaire应该需要这些思路：</p>
 <ul>
@@ -32,10 +123,15 @@
 </li>
 </ul>
 ]]></content>
+    
     <summary type="html">
-    <![CDATA[算是读书笔记吧。还是有一定意义。但分析的层次依旧不够。]]>
+    
+      算是读书笔记吧。还是有一定意义。但分析的层次依旧不够。
     
     </summary>
+    
+      <category term="统计与R" scheme="http://cthgj.me/categories/%E7%BB%9F%E8%AE%A1%E4%B8%8ER/"/>
+    
     
       <category term="R" scheme="http://cthgj.me/tags/R/"/>
     
@@ -43,43 +139,46 @@
     
       <category term="统计学" scheme="http://cthgj.me/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/"/>
     
-      <category term="统计与R" scheme="http://cthgj.me/categories/%E7%BB%9F%E8%AE%A1%E4%B8%8ER/"/>
-    
   </entry>
   
   <entry>
-    <title><![CDATA[随机抽样中覆盖率、重复率概率分析]]></title>
+    <title>随机抽样中覆盖率、重复率概率分析</title>
     <link href="http://cthgj.me/2015/05/21/%E9%9A%8F%E6%9C%BA%E6%8A%BD%E6%A0%B7%E4%B8%AD%E8%A6%86%E7%9B%96%E7%8E%87%E3%80%81%E9%87%8D%E5%A4%8D%E7%8E%87%E6%A6%82%E7%8E%87%E5%88%86%E6%9E%90/"/>
     <id>http://cthgj.me/2015/05/21/随机抽样中覆盖率、重复率概率分析/</id>
     <published>2015-05-21T14:42:05.000Z</published>
     <updated>2015-07-02T20:47:01.231Z</updated>
-    <content type="html"><![CDATA[<p>问题1：从标有1-10号的球中，每次随机有放回的抽取10个球，至少重复多少次能把全部10个数字抽取完？每次试验100次，计算覆盖率的均值作为一次试验的结果。然后统计1个100次试验~1000个100次试验的覆盖率的plot图。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x&#60;-c()&#10;coverge&#60;-c()&#10;mean.cov &#60;-c()&#10;&#10;for (m in 1:1000)&#10;&#123; x[m]&#60;-m&#10;  for (n in 1:100)&#10;  &#123;&#10;    coverge[n]&#60;-length(levels(factor(sample(1:10,10,replace=T))))/10&#10;  &#125;&#10;  mean.cov[m] &#60;- mean(coverge)&#10;&#125;&#10;&#10;x&#10;summary(mean.cov)&#10;plot(x,mean.cov)</span><br></pre></td></tr></table></figure></p>
+    
+    <content type="html"><![CDATA[<p>问题1：从标有1-10号的球中，每次随机有放回的抽取10个球，至少重复多少次能把全部10个数字抽取完？每次试验100次，计算覆盖率的均值作为一次试验的结果。然后统计1个100次试验~1000个100次试验的覆盖率的plot图。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">x&lt;-c()</div><div class="line">coverge&lt;-c()</div><div class="line">mean.cov &lt;-c()</div><div class="line"></div><div class="line">for (m in 1:1000)</div><div class="line">&#123; x[m]&lt;-m</div><div class="line">  for (n in 1:100)</div><div class="line">  &#123;</div><div class="line">    coverge[n]&lt;-length(levels(factor(sample(1:10,10,replace=T))))/10</div><div class="line">  &#125;</div><div class="line">  mean.cov[m] &lt;- mean(coverge)</div><div class="line">&#125;</div><div class="line"></div><div class="line">x</div><div class="line">summary(mean.cov)</div><div class="line">plot(x,mean.cov)</div></pre></td></tr></table></figure></p>
 <ul>
 <li>所以，1000次试验，覆盖率的均值基本不会变化(都在61.4~68.1%)。即单纯的重复有限次抽取并不能保证都抽到。（限制因子有：单次抽取的球的个数（10个，越多自然能得到更高覆盖率）、样本容量size（10个球，5个则是84.6%~92.8%，6个则是80%~88%，7个则是75%~82%，8个则是71%~77%，9个则是65%~73%）</li>
 </ul>
 <p>问题2：同上，单个数字被平均重复抽取多少次时，可以把10个数字抽完？每次试验100次，计算覆盖率的均值作为一次试验的结果，计算数字重复次数的均值作为一次试验的结果。然后统计1个100次试验~1000个100次试验的覆盖率和深度的plot图。</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">x&lt;-c()</span><br><span class="line">coverge&lt;-c()</span><br><span class="line"><span class="keyword">mean</span>.cov &lt;-c()</span><br><span class="line"><span class="keyword">mean</span>.dep &lt;-c()</span><br><span class="line">dep.aver &lt;-c()</span><br><span class="line"><span class="keyword">sample</span> &lt;-c()</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">m</span> <span class="keyword">in</span> 1:1000)</span><br><span class="line">&#123; x[<span class="keyword">m</span>]&lt;-<span class="literal">m</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">n</span> <span class="keyword">in</span> 1:100)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">sample</span>&lt;-<span class="keyword">sample</span>(1:10,10,<span class="keyword">replace</span>=T)</span><br><span class="line">    dep.aver[<span class="keyword">n</span>] &lt;-<span class="keyword">mean</span>(summary(<span class="keyword">factor</span>(<span class="keyword">sample</span>)))</span><br><span class="line">    coverge[<span class="keyword">n</span>]&lt;-<span class="literal">length</span>(<span class="keyword">levels</span>(<span class="keyword">factor</span>(<span class="keyword">sample</span>)))/10</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">mean</span>.dep[<span class="keyword">m</span>]&lt;- <span class="keyword">mean</span>(dep.aver)</span><br><span class="line">  <span class="keyword">mean</span>.cov[<span class="keyword">m</span>] &lt;- <span class="keyword">mean</span>(coverge)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">x</span><br><span class="line">summary(<span class="keyword">mean</span>.cov)</span><br><span class="line">summary(<span class="keyword">mean</span>.dep)</span><br><span class="line"><span class="keyword">plot</span>(<span class="keyword">mean</span>.dep,<span class="keyword">mean</span>.cov)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">x&lt;-c()</div><div class="line">coverge&lt;-c()</div><div class="line">mean.cov &lt;-c()</div><div class="line">mean.dep &lt;-c()</div><div class="line">dep.aver &lt;-c()</div><div class="line">sample &lt;-c()</div><div class="line">for (m in 1:1000)</div><div class="line">&#123; x[m]&lt;-m</div><div class="line">  for (n in 1:100)</div><div class="line">  &#123;</div><div class="line">    sample&lt;-sample(1:10,10,replace=T)</div><div class="line">    dep.aver[n] &lt;-mean(summary(factor(sample)))</div><div class="line">    coverge[n]&lt;-length(levels(factor(sample)))/10</div><div class="line">  &#125;</div><div class="line">  mean.dep[m]&lt;- mean(dep.aver)</div><div class="line">  mean.cov[m] &lt;- mean(coverge)</div><div class="line">&#125;</div><div class="line"></div><div class="line">x</div><div class="line">summary(mean.cov)</div><div class="line">summary(mean.dep)</div><div class="line">plot(mean.dep,mean.cov)</div></pre></td></tr></table></figure>
 <ul>
 <li>所以，1000次试验中，无论怎样，覆盖率的均值基本不会变化(都在62.0~68.6%，也即是上问的结果：即单纯的重复有限次抽取并不能保证全部都抽到。)；同时，虽然深度和覆盖率呈线性负相关性，但在单纯的重复有限次抽取情况下根本不可能本质上的增加深度（本例中，mean.dep=（1.491，1.658）。而是，深度与抽取次数相关。如果我一次性有放回抽取的是20个，那么，覆盖率范围变大（84.3%~90.6%），深度变为（2.227~2.403）。</li>
 </ul>
-<p>问题3：从标有1-10号的球中，仅限抽取一次，随机抽取多少个球能把10个数字全部抽完？试验100次，每次取平均值，得到plot图。<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">x&lt;-c()</span><br><span class="line">coverge&lt;-c()</span><br><span class="line"><span class="keyword">mean</span>.cov &lt;-c()</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">m</span> <span class="keyword">in</span> 1:50)</span><br><span class="line">&#123; x[<span class="keyword">m</span>]&lt;-<span class="literal">m</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">n</span> <span class="keyword">in</span> 1:100)</span><br><span class="line">  &#123;</span><br><span class="line">    coverge[<span class="keyword">n</span>]&lt;-<span class="literal">length</span>(<span class="keyword">levels</span>(<span class="keyword">factor</span>(<span class="keyword">sample</span>(1:10,<span class="keyword">m</span>,<span class="keyword">replace</span>=T))))/10</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">mean</span>.cov[<span class="keyword">m</span>] &lt;- <span class="keyword">mean</span>(coverge)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">x</span><br><span class="line">coverge</span><br><span class="line"><span class="keyword">plot</span>(x,<span class="keyword">mean</span>.cov)</span><br></pre></td></tr></table></figure></p>
+<p>问题3：从标有1-10号的球中，仅限抽取一次，随机抽取多少个球能把10个数字全部抽完？试验100次，每次取平均值，得到plot图。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">x&lt;-c()</div><div class="line">coverge&lt;-c()</div><div class="line">mean.cov &lt;-c()</div><div class="line">for (m in 1:50)</div><div class="line">&#123; x[m]&lt;-m</div><div class="line">  for (n in 1:100)</div><div class="line">  &#123;</div><div class="line">    coverge[n]&lt;-length(levels(factor(sample(1:10,m,replace=T))))/10</div><div class="line">  &#125;</div><div class="line">  mean.cov[m] &lt;- mean(coverge)</div><div class="line">&#125;</div><div class="line"></div><div class="line">x</div><div class="line">coverge</div><div class="line">plot(x,mean.cov)</div></pre></td></tr></table></figure></p>
 <ul>
 <li>所以，约20~30次计数抽取即可覆盖80%~90%的号。</li>
 </ul>
 ]]></content>
+    
     <summary type="html">
-    <![CDATA[10标有号的球，不同抽取方法，类比测序。]]>
+    
+      10标有号的球，不同抽取方法，类比测序。
     
     </summary>
+    
     
   </entry>
   
   <entry>
-    <title><![CDATA[R基本命令(不完全记录）]]></title>
+    <title>R基本命令(不完全记录）</title>
     <link href="http://cthgj.me/2015/05/19/R%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4-%E4%B8%8D%E5%AE%8C%E5%85%A8%E8%AE%B0%E5%BD%95%EF%BC%89/"/>
     <id>http://cthgj.me/2015/05/19/R基本命令-不完全记录）/</id>
     <published>2015-05-19T21:36:07.000Z</published>
     <updated>2015-07-02T20:46:04.877Z</updated>
+    
     <content type="html"><![CDATA[<p></p><p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" target="_blank" rel="external">http://rmarkdown.rstudio.com</a>.</p><p></p>
 <p></p><p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. </p>
 <p></p><p>查看getwd()当前工作路径;设定setwd()工作路径;</p><p></p>
@@ -456,25 +555,29 @@ $(document).ready(function () {
 
 <p><br></p>
 ]]></content>
+    
     <summary type="html">
-    <![CDATA[根据Edex上的课程，重新根据自己的思路理一遍，方便以后查看。]]>
+    
+      根据Edex上的课程，重新根据自己的思路理一遍，方便以后查看。
     
     </summary>
+    
+      <category term="R" scheme="http://cthgj.me/categories/R/"/>
+    
     
       <category term="R" scheme="http://cthgj.me/tags/R/"/>
     
       <category term="apply" scheme="http://cthgj.me/tags/apply/"/>
     
-      <category term="R" scheme="http://cthgj.me/categories/R/"/>
-    
   </entry>
   
   <entry>
-    <title><![CDATA[对于生物学测序数据的思路分析]]></title>
+    <title>对于生物学测序数据的思路分析</title>
     <link href="http://cthgj.me/2015/05/19/%E5%AF%B9%E4%BA%8E%E7%94%9F%E7%89%A9%E5%AD%A6%E6%B5%8B%E5%BA%8F%E6%95%B0%E6%8D%AE%E7%9A%84%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/"/>
     <id>http://cthgj.me/2015/05/19/对于生物学测序数据的思路分析/</id>
     <published>2015-05-19T15:24:51.000Z</published>
     <updated>2015-07-02T20:44:34.198Z</updated>
+    
     <content type="html"><![CDATA[<ul>
 <li>对于测序结果，常问的问题：<ul>
 <li><strong>某一类</strong>基因的表达变化量如何？<br>这个某一类包含的信息有：<br>1.基本的筛选过程：<ul>
@@ -489,37 +592,40 @@ $(document).ready(function () {
 </li>
 </ul>
 ]]></content>
+    
     <summary type="html">
-    <![CDATA[现在以及将来测序会是最基本的技术，但是不管是genome-seq，RNA-seq，ChIP-seq等等，理解思路才是关键。]]>
+    
+      现在以及将来测序会是最基本的技术，但是不管是genome-seq，RNA-seq，ChIP-seq等等，理解思路才是关键。
     
     </summary>
     
-      <category term="数据分析" scheme="http://cthgj.me/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+      <category term="数据分析思路" scheme="http://cthgj.me/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%80%9D%E8%B7%AF/"/>
     
-      <category term="生物学过程" scheme="http://cthgj.me/tags/%E7%94%9F%E7%89%A9%E5%AD%A6%E8%BF%87%E7%A8%8B/"/>
     
       <category term="组学" scheme="http://cthgj.me/tags/%E7%BB%84%E5%AD%A6/"/>
     
-      <category term="数据分析思路" scheme="http://cthgj.me/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%80%9D%E8%B7%AF/"/>
+      <category term="生物学过程" scheme="http://cthgj.me/tags/%E7%94%9F%E7%89%A9%E5%AD%A6%E8%BF%87%E7%A8%8B/"/>
+    
+      <category term="数据分析" scheme="http://cthgj.me/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[Markdown格式]]></title>
+    <title>Markdown格式</title>
     <link href="http://cthgj.me/2015/05/13/Markdown%E6%A0%BC%E5%BC%8F/"/>
     <id>http://cthgj.me/2015/05/13/Markdown格式/</id>
     <published>2015-05-13T19:36:35.000Z</published>
-    <updated>2015-05-18T19:02:37.190Z</updated>
-    <content type="html"><![CDATA[<p>初学markdown，很多格式都不清楚，因此本文旨在根据成文的顺序，搜集各博客后总结出语法，以供自己后续练习作参考。</p>
-<h1 id="1-_标题">1. 标题</h1><p>Markdown中，只需要在文本前面加上 # 即可，同理、还可以增加二级标题、三级标题、四级标题、五级标题和六级标题，总共六级，只需要增加  # 即可，标题字号相应降低。例如：<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#一级标题</span></span><br><span class="line"><span class="preprocessor">##二级标题</span></span><br><span class="line">...</span><br><span class="line"><span class="preprocessor">###### 六级标题</span></span><br></pre></td></tr></table></figure></p>
+    <updated>2017-03-28T18:47:16.692Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1-标题"><a href="#1-标题" class="headerlink" title="1. 标题"></a>1. 标题</h1><p>Markdown中，只需要在文本前面加上 # 即可，同理、还可以增加二级标题、三级标题、四级标题、五级标题和六级标题，总共六级，只需要增加  # 即可，标题字号相应降低。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 一级标题</div><div class="line">## 二级标题</div><div class="line">...</div><div class="line">###### 六级标题</div></pre></td></tr></table></figure></p>
 <p>效果是这样：</p>
 <blockquote>
-<h1 id="一级标题">一级标题</h1><h2 id="二级标题">二级标题</h2><h3 id="…">…</h3><h6 id="六级标题">六级标题</h6></blockquote>
-<p>也可以用<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">大标题</span><br><span class="line"><span class="header">=== (&gt;=3个)</span></span><br><span class="line">小标题</span><br><span class="line"><span class="bullet">--- </span>(&gt;=3个)</span><br></pre></td></tr></table></figure></p>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="…"><a href="#…" class="headerlink" title="…"></a>…</h3><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6></blockquote>
+<p>也可以用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">大标题</div><div class="line">=== (&gt;=3个)</div><div class="line">小标题</div><div class="line">--- (&gt;=3个)</div></pre></td></tr></table></figure></p>
 <p>效果是这样：</p>
 <blockquote>
-<h1 id="大标题">大标题</h1><h2 id="小标题">小标题</h2></blockquote>
-<h1 id="2-_文本内容">2. 文本内容</h1><p>当我们写作时，需要呈现的基本上包括：</p>
+<h1 id="大标题"><a href="#大标题" class="headerlink" title="大标题"></a>大标题</h1><h2 id="小标题"><a href="#小标题" class="headerlink" title="小标题"></a>小标题</h2></blockquote>
+<h1 id="2-文本内容"><a href="#2-文本内容" class="headerlink" title="2. 文本内容"></a>2. 文本内容</h1><p>当我们写作时，需要呈现的基本上包括：</p>
 <ul>
 <li><strong>文字</strong> （加粗、斜体、字体、大小、颜色、下划线、删除、分割线）</li>
 <li><strong>引用</strong> （文字、代码）</li>
@@ -527,10 +633,10 @@ $(document).ready(function () {
 <li><strong>列表</strong> （有序、无序、嵌套）</li>
 <li><p><strong>表格</strong> </p>
 </li>
-<li><h2 id="文字_加粗、斜体、删除、微软雅黑字体、大小、颜色、分割线、段落">文字_<strong>加粗</strong>、<em>斜体</em>、<del>删除</del>、<font face="微软雅黑">微软雅黑字体</font>、<font size="2px">大小</font>、<font color="green">颜色</font>、分割线、段落</h2><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">*</span><span class="keyword">*</span>加粗<span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line"><span class="keyword">*</span>斜体<span class="keyword">*</span> or _斜体_</span><br><span class="line">~~删除~~</span><br><span class="line"><span class="keyword">*</span>注：以下为html的font语法，默认的markdown并不支持。</span><br><span class="line"><span class="variable">&lt;font face="微软雅黑"&gt;</span>微软雅黑字体<span class="variable">&lt;/font&gt;</span></span><br><span class="line"><span class="variable">&lt;font size="2px"&gt;</span>大小<span class="variable">&lt;/font&gt;</span> 文字大小的单位可以是px，cm，inch等；</span><br><span class="line"><span class="variable">&lt;font color="green"&gt;</span>颜色<span class="variable">&lt;font&gt;</span> 这里设置为绿色 也可以使蓝色 blue 红色red  或更精确丰富的 16进制值如 <span class="comment">#873422；</span></span><br><span class="line">使用3个以上的星号、减号、底线就可以。（<span class="keyword">*</span>注：不过这里的要求是：行内只能有以上3中，其中可以有空白，但不能包含除空格外的其它字符。）</span><br><span class="line">以一个空行开始，以一个空行结束，中间的就是一个段落</span><br></pre></td></tr></table></figure>
+<li><h2 id="文字-加粗、斜体、删除、微软雅黑字体、大小、颜色、分割线、段落"><a href="#文字-加粗、斜体、删除、微软雅黑字体、大小、颜色、分割线、段落" class="headerlink" title="文字_加粗、斜体、删除、微软雅黑字体、大小、颜色、分割线、段落"></a>文字_<strong>加粗</strong>、<em>斜体</em>、<del>删除</del>、<font face="微软雅黑">微软雅黑字体</font>、<font size="2px">大小</font>、<font color="green">颜色</font>、分割线、段落</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">**加粗**</div><div class="line">*斜体* or _斜体_</div><div class="line">~~删除~~</div><div class="line">*注：以下为html的font语法，默认的markdown并不支持。</div><div class="line">&lt;font face=&quot;微软雅黑&quot;&gt;微软雅黑字体&lt;/font&gt;</div><div class="line">&lt;font size=&quot;2px&quot;&gt;大小&lt;/font&gt; 文字大小的单位可以是px，cm，inch等；</div><div class="line">&lt;font color=&quot;green&quot;&gt;颜色&lt;font&gt; 这里设置为绿色 也可以使蓝色 blue 红色red  或更精确丰富的 16进制值如 #873422；</div><div class="line">使用3个以上的星号、减号、底线就可以。（*注：不过这里的要求是：行内只能有以上3中，其中可以有空白，但不能包含除空格外的其它字符。）</div><div class="line">以一个空行开始，以一个空行结束，中间的就是一个段落</div></pre></td></tr></table></figure>
 </li>
-<li><h2 id="文字_引用">文字_引用</h2><p>对于简单的文字或几行代码，可以以邮件的输入方式“&gt;”来表示。引用的里面的所有markdown格式都将有效。引用里面可以再添加次级引用。例如：</p>
-<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;Dear XX,</span><br><span class="line">&gt;How<span class="comment">'s your going? Last week, I visted Paris. I learned some french:</span></span><br><span class="line">&gt;&gt;<span class="number">1.</span>*Bonjour*;</span><br><span class="line">&gt;&gt;<span class="number">2.</span>*Merci*;</span><br><span class="line">&gt;（注：这儿有一空行，退出二级引用）</span><br><span class="line">&gt;It<span class="comment">'s wonderful! </span></span><br><span class="line">&gt;CU soon!</span><br></pre></td></tr></table></figure>
+<li><h2 id="文字-引用"><a href="#文字-引用" class="headerlink" title="文字_引用"></a>文字_引用</h2><p>对于简单的文字或几行代码，可以以邮件的输入方式“&gt;”来表示。引用的里面的所有markdown格式都将有效。引用里面可以再添加次级引用。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;Dear XX,</div><div class="line">&gt;How&apos;s your going? Last week, I visted Paris. I learned some french:</div><div class="line">&gt;&gt;1.*Bonjour*;</div><div class="line">&gt;&gt;2.*Merci*;</div><div class="line">&gt;（注：这儿有一空行，退出二级引用）</div><div class="line">&gt;It&apos;s wonderful! </div><div class="line">&gt;CU soon!</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>效果是这样的：</p>
@@ -542,19 +648,19 @@ $(document).ready(function () {
 <p>It’s wonderful!<br>CU soon!</p>
 </blockquote>
 <ul>
-<li><h2 id="链接">链接</h2>Markdown支持两种风格的链接：<strong><em>Inline</em></strong>和<strong><em>Reference</em></strong>。</li>
+<li><h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2>Markdown支持两种风格的链接：<strong><em>Inline</em></strong>和<strong><em>Reference</em></strong>。</li>
 </ul>
 <p><strong>Inline</strong>：以中括号标记显示的链接文本，后面紧跟用小括号包围的链接。如果链接有title属性，则在链接中使用空格加”title属性”。</p>
 <p><strong>Reference</strong>：一般应用于多个不同位置使用相同链接。通常分为两个部分，调用部分为<a href="http://equation85.github.io/blog/markdown-examples/" target="_blank" rel="external">链接文本</a>；定义部分可以出现在文本中的其他位置，格式为<a href="http://equation85.github.io/blog/markdown-examples/" target="_blank" rel="external">ref</a>: <a href="http://some/link/address" target="_blank" rel="external">http://some/link/address</a> (可选的标题)。<br>注：ref中不区分大小写。</p>
-<p>例如：<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">这是我的博客地址[<span class="type">My_blog</span>](http://cthgj.me <span class="string">"HUGO"</span>)。</span><br><span class="line">部分博客内容引用自[equation8][<span class="keyword">ref</span>]。</span><br><span class="line">[<span class="keyword">ref</span>]:http://equation85.github.io/blog/markdown-examples/</span><br><span class="line">*注：title 为可选；</span><br><span class="line">*注：<span class="keyword">ref</span>其实就类似于写文章中的插入参考文献，先加入文字，再在文末添加references相关信息；</span><br></pre></td></tr></table></figure></p>
+<p>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">这是我的博客地址[My_blog](http://cthgj.me &quot;HUGO&quot;)。</div><div class="line">部分博客内容引用自[equation8][ref]。</div><div class="line">[ref]:http://equation85.github.io/blog/markdown-examples/</div><div class="line">*注：title 为可选；</div><div class="line">*注：ref其实就类似于写文章中的插入参考文献，先加入文字，再在文末添加references相关信息；</div></pre></td></tr></table></figure></p>
 <p>效果</p>
-<p>这是我的博客地址<a href="http://cthgj.me" title="HUGO" target="_blank" rel="external">My_blog</a>。<br>部分博客内容引用自<a href="http://equation85.github.io/blog/markdown-examples/" target="_blank" rel="external">equation8</a>。</p>
-<p>对于图片的链接，在中括号前加<strong>叹号</strong>即可。<br><strong><em>注：Markdown不能设置图片大小，如果必须设置则应使用HTML标记<img>。</em></strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Inline示例：![<span class="link_label">banner</span>](<span class="link_url">https://raw.githubusercontent.com/e-tomato/e-tomato.github.io/master/img/banner.jpg</span>)</span><br><span class="line">Reference示例：![<span class="link_label">替代文本</span>][<span class="link_reference">pic</span>]</span><br><span class="line">[<span class="link_reference">pic</span>]:<span class="link_url">https://raw.githubusercontent.com/e-tomato/e-tomato.github.io/master/img/banner.jpg "可选的title"</span></span><br><span class="line">HTML示例：<span class="xml"><span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"https://raw.githubusercontent.com/e-tomato/e-tomato.github.io/master/img/banner.jpg"</span> <span class="attribute">alt</span>=<span class="value">"替代文本"</span> <span class="attribute">title</span>=<span class="value">"标题文本"</span> <span class="attribute">width</span>=<span class="value">"200"</span> /&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>这是我的博客地址<a href="http://cthgj.me" title="HUGO">My_blog</a>。<br>部分博客内容引用自<a href="http://equation85.github.io/blog/markdown-examples/" target="_blank" rel="external">equation8</a>。</p>
+<p>对于图片的链接，在中括号前加<strong>叹号</strong>即可。<br><strong><em>注：Markdown不能设置图片大小，如果必须设置则应使用HTML标记<img>。</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Inline示例：![banner](https://raw.githubusercontent.com/e-tomato/e-tomato.github.io/master/img/banner.jpg)</div><div class="line">Reference示例：![替代文本][pic]</div><div class="line">[pic]:https://raw.githubusercontent.com/e-tomato/e-tomato.github.io/master/img/banner.jpg &quot;可选的title&quot;</div><div class="line">HTML示例：&lt;img src=&quot;https://raw.githubusercontent.com/e-tomato/e-tomato.github.io/master/img/banner.jpg&quot; alt=&quot;替代文本&quot; title=&quot;标题文本&quot; width=&quot;200&quot; /&gt;</div></pre></td></tr></table></figure></p>
 <p>效果：</p>
 <p>Inline示例：<img src="https://raw.githubusercontent.com/e-tomato/e-tomato.github.io/master/img/banner.jpg" alt="banner"><br>Reference示例：<img src="https://raw.githubusercontent.com/e-tomato/e-tomato.github.io/master/img/banner.jpg" alt="替代文本" title="可选的title"></p>
 <p>HTML示例：<img src="https://raw.githubusercontent.com/e-tomato/e-tomato.github.io/master/img/banner.jpg" alt="替代文本" title="标题文本" width="200"></p>
 <ul>
-<li><h2 id="列表">列表</h2>无序列表使用*、+或-后面加上空格来表示。<br>有序列表使用数字加英文句号加空格表示。例如：<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">* </span>Item 1</span><br><span class="line"><span class="bullet">* </span>Item 2</span><br><span class="line"><span class="bullet">* </span>Item 3</span><br><span class="line"></span><br><span class="line"><span class="bullet">+ </span>Item 1</span><br><span class="line"><span class="bullet">+ </span>Item 2</span><br><span class="line"><span class="bullet">+ </span>Item 3</span><br><span class="line"></span><br><span class="line"><span class="bullet">- </span>Item 1</span><br><span class="line"><span class="bullet">- </span>Item 2</span><br><span class="line"><span class="bullet">- </span>Item 3</span><br><span class="line"></span><br><span class="line"><span class="bullet">1. </span>Item 1</span><br><span class="line"><span class="bullet">2. </span>Item 2</span><br><span class="line"><span class="bullet">3. </span>Item 3</span><br></pre></td></tr></table></figure>
+<li><h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2>无序列表使用*、+或-后面加上空格来表示。<br>有序列表使用数字加英文句号加空格表示。例如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">* Item 1</div><div class="line">* Item 2</div><div class="line">* Item 3</div><div class="line"></div><div class="line">+ Item 1</div><div class="line">+ Item 2</div><div class="line">+ Item 3</div><div class="line"></div><div class="line">- Item 1</div><div class="line">- Item 2</div><div class="line">- Item 3</div><div class="line"></div><div class="line">1. Item 1</div><div class="line">2. Item 2</div><div class="line">3. Item 3</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>效果：</p>
@@ -581,9 +687,9 @@ $(document).ready(function () {
 </ol>
 </blockquote>
 <ul>
-<li><h2 id="表格">表格</h2></li>
+<li>##表格</li>
 </ul>
-<p>Markdown的扩展语法<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">Item </span>    | <span class="constant">Value</span></span><br><span class="line">-------- | ---</span><br><span class="line"><span class="constant">Computer </span>| <span class="variable">$1600</span></span><br><span class="line"><span class="constant">Phone </span>   | <span class="variable">$12</span></span><br><span class="line"><span class="constant">Pipe </span>    | <span class="variable">$1</span></span><br><span class="line"></span><br><span class="line">| <span class="constant">Tables </span>       | <span class="constant">Are </span>          | <span class="constant">Cool </span> |</span><br><span class="line">| ------------- |<span class="symbol">:-------------</span><span class="symbol">:|</span> -----<span class="symbol">:|</span>(：表示文本位置，默认为左对齐)</span><br><span class="line">| col <span class="number">3</span> is      | right-aligned | <span class="variable">$1600</span> |</span><br><span class="line">| col <span class="number">2</span> is      | centered      |   <span class="variable">$12</span> |</span><br><span class="line">| zebra stripes | are neat      |    <span class="variable">$1</span> |</span><br></pre></td></tr></table></figure></p>
+<p>Markdown的扩展语法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Item     | Value</div><div class="line">-------- | ---</div><div class="line">Computer | $1600</div><div class="line">Phone    | $12</div><div class="line">Pipe     | $1</div><div class="line"></div><div class="line">| Tables        | Are           | Cool  |</div><div class="line">| ------------- |:-------------:| -----:|(：表示文本位置，默认为左对齐)</div><div class="line">| col 3 is      | right-aligned | $1600 |</div><div class="line">| col 2 is      | centered      |   $12 |</div><div class="line">| zebra stripes | are neat      |    $1 |</div></pre></td></tr></table></figure></p>
 <p>效果</p>
 <table>
 <thead>
@@ -634,57 +740,76 @@ $(document).ready(function () {
 </tbody>
 </table>
 <p>基本上就这些了，等需要时再更新。</p>
-<p>最后，由于使用jacman主题，最好使用如下语法写：<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">title: postName #文章页面上的显示名称，可以任意修改，不会出现在URL中</span><br><span class="line">date: 2013-12-02 15:30:16 #文章生成时间，一般不改，当然也可以任意修改</span><br><span class="line">categories: example #分类</span><br><span class="line">tags: [tag1,tag2,tag3] #文章标签，可空，多标签请用格式，注意:后面有个空格</span><br><span class="line"><span class="header">description: 附加一段文章摘要，字数最好在140字以内。</span><br><span class="line">---</span></span><br></pre></td></tr></table></figure></p>
-]]></content>
+<p>最后，由于使用jacman主题，最好使用如下语法写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">title: postName #文章页面上的显示名称，可以任意修改，不会出现在URL中</div><div class="line">date: 2013-12-02 15:30:16 #文章生成时间，一般不改，当然也可以任意修改</div><div class="line">categories: example #分类</div><div class="line">tags: [tag1,tag2,tag3] #文章标签，可空，多标签请用格式，注意:后面有个空格</div><div class="line">description: 附加一段文章摘要，字数最好在140字以内。</div></pre></td></tr></table></figure>]]></content>
+    
     <summary type="html">
-    <![CDATA[<p>初学markdown，很多格式都不清楚，因此本文旨在根据成文的顺序，搜集各博客后总结出语法，以供自己后续练习作参考。</p>
-<h1 id="1-_标题">1. 标题</h1><p>Markdown中，只需要在文本前面加上 # 即可，同理、还可以增加二级标题、三级标题、四级]]>
+    
+      初学markdown，很多格式都不清楚，因此本文旨在根据成文的顺序，搜集各博客后总结出语法，以供自己后续练习作参考。
+    
     </summary>
+    
+      <category term="md" scheme="http://cthgj.me/categories/md/"/>
+    
     
       <category term="markdown" scheme="http://cthgj.me/tags/markdown/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[阅读书目]]></title>
+    <title>阅读书目</title>
     <link href="http://cthgj.me/2015/05/13/%E9%98%85%E8%AF%BB%E4%B9%A6%E7%9B%AE/"/>
     <id>http://cthgj.me/2015/05/13/阅读书目/</id>
     <published>2015-05-13T19:14:35.000Z</published>
-    <updated>2015-05-13T19:16:30.926Z</updated>
+    <updated>2016-05-17T12:52:25.489Z</updated>
+    
     <content type="html"><![CDATA[<ol>
 <li>《伟大的博物学家》;</li>
+<li>《平凡的世界》；</li>
+<li>Molecular Biology: Principles of Genome Function</li>
 <li>to be continued;</li>
 </ol>
 ]]></content>
+    
     <summary type="html">
-    <![CDATA[<ol>
-<li>《伟大的博物学家》;</li>
-<li>to be continued;</li>
-</ol>
-]]>
+    
+      &lt;ol&gt;
+&lt;li&gt;《伟大的博物学家》;&lt;/li&gt;
+&lt;li&gt;《平凡的世界》；&lt;/li&gt;
+&lt;li&gt;Molecular Biology: Principles of Genome Function&lt;/li&gt;
+&lt;li&gt;to be continued;&lt;/li&gt;
+&lt;/ol&gt;
+
+    
     </summary>
+    
     
   </entry>
   
   <entry>
-    <title><![CDATA[Hello World]]></title>
-    <link href="http://cthgj.me/2015/05/11/hello-world/"/>
-    <id>http://cthgj.me/2015/05/11/hello-world/</id>
-    <published>2015-05-11T21:49:27.488Z</published>
-    <updated>2015-05-10T21:24:53.253Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+    <title>Hello World</title>
+    <link href="http://cthgj.me/2015/05/10/hello-world/"/>
+    <id>http://cthgj.me/2015/05/10/hello-world/</id>
+    <published>2015-05-10T21:20:23.168Z</published>
+    <updated>2017-03-28T18:48:52.397Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 ]]></content>
+    
     <summary type="html">
-    <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
+    
+      basic hexo-blog generating processes。
+    
     </summary>
+    
     
   </entry>
   

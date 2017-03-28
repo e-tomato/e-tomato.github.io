@@ -77,6 +77,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="Simple but Matters" type="application/atom+xml" />
+
 
 
 
@@ -378,179 +380,14 @@
 
       
         
-          
-            <hr>
-<p> 这篇文章记录下blog生成的过程，不复杂，但就是容易忘(哎，主要还是人老了)。</p>
-<hr>
-<h1 id="Protocol如下："><a href="#Protocol如下：" class="headerlink" title="Protocol如下："></a>Protocol如下：</h1><h2 id="1-配置文件"><a href="#1-配置文件" class="headerlink" title="1. 配置文件"></a>1. 配置文件</h2><ul>
-<li><p>A. 按hexo网站下载必需的软件 (包括<a href="http://git-scm.com/" target="_blank" rel="external">git</a>和 <a href="http://nodejs.org/" target="_blank" rel="external">Node.js</a>) … &gt; … &gt; …&gt;。</p>
-</li>
-<li><p>B. 根据theme修改主体的_config.yml以及主题的_config.yml文件 (参考网站：<a href="https://linghucong.js.org/2016/04/15/2016-04-15-hexo-github-pages-blog/" target="_blank" rel="external">博客搭建</a>，<a href="http://theme-next.iissnan.com/" target="_blank" rel="external">next</a>).然后不停的改配置，不停的改，直到自己满意为止。</p>
-</li>
-<li><blockquote>
-<p>C. 连接GitHub分支通过Git (in bash)。<br>a) 本地创建公钥(public key)(参考<a href="https://help.github.com/articles/generating-an-ssh-key/" target="_blank" rel="external">github帮助</a>);</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -b 4096 -C &quot;xxx@gmail.com&quot; # xxx为注册邮箱地址</div></pre></td></tr></table></figure>
-</blockquote>
-<p>b) 此时在windows user/.ssh目录下会生成两个文件，id_rsa.pub和id_rsa(<em>提示输入的密码不一定非得是github的密码</em>);<br>c) 登陆github，在<a href="https://github.com/settings/keys" target="_blank" rel="external">SSH设置页面</a>添加上刚才的public key文件也就是<strong>id_rsa.pub</strong>的内容即可.<br><strong>注意：</strong>如果忘记了id_sra.pub的位置就重新生成新的key，具体参考github帮助(<a href="https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/" target="_blank" rel="external">点此</a> 还有<a href="https://help.github.com/articles/connecting-to-github-with-ssh/" target="_blank" rel="external">此</a>)，然后删掉旧的SSH key。</p>
-</li>
-<li><blockquote>
-<p>D. 由于hexo deploy有时无法push到远程repo上去。所以还是用git来更新blog。<br> a) clone自己的repo (git bash)：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd /d/On-learning/Github/hexo/my_blog/</div><div class="line">git clone https://github.com/e-tomato/e-tomato.github.io.git .deploy/e-tomato.github.io</div><div class="line"># .deploy 文件的内容即是blog所需要的内容</div></pre></td></tr></table></figure>
-</blockquote>
-<p> b) 在hexo中生成博客，复制public文件下的所有内容至 .deploy/e-tomato.github.io下，然后用git命令来更新修改或删除博客内容。以下是shell脚本deply.sh的内容：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">hexo generate</div><div class="line">cp -R ../public/* .deploy/e-tomato.github.io</div><div class="line">cd .deploy/e-tomato.github.io</div><div class="line">git add .</div><div class="line">git commit -m “update”</div><div class="line">git push origin master</div><div class="line"></div><div class="line">## 如果是删除文件： git rm xx ==&gt; git commit -m &quot;delete xx&quot; ==&gt;git push origin master;</div></pre></td></tr></table></figure>
-<p> 部署过程中可能需要输入Github账户的用户名及密码，按照提示操作即可。</p>
-</li>
-</ul>
-<hr>
-<h2 id="2-写博客"><a href="#2-写博客" class="headerlink" title="2. 写博客"></a>2. 写博客</h2><pre><code>a) 创建新博客：(md文件位于hexo/source/_posts/下)
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new &quot;title&quot;</div></pre></td></tr></table></figure>
-
-博客格式如下(尽量给每篇文章加tags，逗号分隔)：
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: Summary of git and hexo for my web</div><div class="line">date: 2017-03-27 22:49:29</div><div class="line">tags: hexo</div><div class="line">comments: false</div><div class="line">---</div></pre></td></tr></table></figure>
-
-b) 如果需要备份，复制该文件至my_blog/drafts.md/下进行修改，等完成后再发布。
-
-c) 生成博客：
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo generate # 或者hexo g</div></pre></td></tr></table></figure>
-
-
-d) 本地查看[localhost:4000](http://localhost:4000):
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo server # 或者直接hexo s</div></pre></td></tr></table></figure>
-
-
-e) 部署到网站：
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo deploy</div><div class="line">## 不行的话就用之前deploy.sh</div></pre></td></tr></table></figure>
-</code></pre><h1 id="THE-END"><a href="#THE-END" class="headerlink" title="THE END"></a>THE END</h1>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://cthgj.me/2017/03/12/test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="e-tomato (GJ.H)">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simple but Matters">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/12/test/" itemprop="url">
-                  Welcome-To-my-World!
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-12T22:24:37+01:00">
-                2017-03-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/12/test/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/03/12/test/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>只是测试一下。oyeah！</p>
-
-          
+          这篇文章记录下blog生成的过程，不复杂，但就是容易忘。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/27/Summary-of-git-and-hexo-for-my-web/">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -641,16 +478,6 @@ e) 部署到网站：
           
 
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/07/02/基因调控网络的演化层级关系/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/07/02/基因调控网络的演化层级关系/" itemprop="commentCount"></span>
-                </a>
-              </span>
             
           
 
@@ -796,16 +623,6 @@ e) 部署到网站：
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/06/06/概率统计学习-一/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/06/概率统计学习-一/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -927,16 +744,6 @@ e) 部署到网站：
           
 
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/05/21/随机抽样中覆盖率、重复率概率分析/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/21/随机抽样中覆盖率、重复率概率分析/" itemprop="commentCount"></span>
-                </a>
-              </span>
             
           
 
@@ -1082,16 +889,6 @@ e) 部署到网站：
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/05/19/R基本命令-不完全记录）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/19/R基本命令-不完全记录）/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -1235,16 +1032,6 @@ e) 部署到网站：
           
 
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/05/19/对于生物学测序数据的思路分析/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/19/对于生物学测序数据的思路分析/" itemprop="commentCount"></span>
-                </a>
-              </span>
             
           
 
@@ -1390,16 +1177,6 @@ e) 部署到网站：
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/05/13/Markdown格式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/13/Markdown格式/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -1423,135 +1200,14 @@ e) 部署到网站：
 
       
         
-          
-            <p>初学markdown，很多格式都不清楚，因此本文旨在根据成文的顺序，搜集各博客后总结出语法，以供自己后续练习作参考。</p>
-<h1 id="1-标题"><a href="#1-标题" class="headerlink" title="1. 标题"></a>1. 标题</h1><p>Markdown中，只需要在文本前面加上 # 即可，同理、还可以增加二级标题、三级标题、四级标题、五级标题和六级标题，总共六级，只需要增加  # 即可，标题字号相应降低。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 一级标题</div><div class="line">## 二级标题</div><div class="line">...</div><div class="line">###### 六级标题</div></pre></td></tr></table></figure></p>
-<p>效果是这样：</p>
-<blockquote>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="…"><a href="#…" class="headerlink" title="…"></a>…</h3><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6></blockquote>
-<p>也可以用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">大标题</div><div class="line">=== (&gt;=3个)</div><div class="line">小标题</div><div class="line">--- (&gt;=3个)</div></pre></td></tr></table></figure></p>
-<p>效果是这样：</p>
-<blockquote>
-<h1 id="大标题"><a href="#大标题" class="headerlink" title="大标题"></a>大标题</h1><h2 id="小标题"><a href="#小标题" class="headerlink" title="小标题"></a>小标题</h2></blockquote>
-<h1 id="2-文本内容"><a href="#2-文本内容" class="headerlink" title="2. 文本内容"></a>2. 文本内容</h1><p>当我们写作时，需要呈现的基本上包括：</p>
-<ul>
-<li><strong>文字</strong> （加粗、斜体、字体、大小、颜色、下划线、删除、分割线）</li>
-<li><strong>引用</strong> （文字、代码）</li>
-<li><strong>链接</strong> （图片，其它链接）</li>
-<li><strong>列表</strong> （有序、无序、嵌套）</li>
-<li><p><strong>表格</strong> </p>
-</li>
-<li><p>##文字_<strong>加粗</strong>、<em>斜体</em>、<del>删除</del>、<font face="微软雅黑">微软雅黑字体</font>、<font size="2px">大小</font>、<font color="green">颜色</font>、分割线、段落</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">**加粗**</div><div class="line">*斜体* or _斜体_</div><div class="line">~~删除~~</div><div class="line">*注：以下为html的font语法，默认的markdown并不支持。</div><div class="line">&lt;font face=&quot;微软雅黑&quot;&gt;微软雅黑字体&lt;/font&gt;</div><div class="line">&lt;font size=&quot;2px&quot;&gt;大小&lt;/font&gt; 文字大小的单位可以是px，cm，inch等；</div><div class="line">&lt;font color=&quot;green&quot;&gt;颜色&lt;font&gt; 这里设置为绿色 也可以使蓝色 blue 红色red  或更精确丰富的 16进制值如 #873422；</div><div class="line">使用3个以上的星号、减号、底线就可以。（*注：不过这里的要求是：行内只能有以上3中，其中可以有空白，但不能包含除空格外的其它字符。）</div><div class="line">以一个空行开始，以一个空行结束，中间的就是一个段落</div></pre></td></tr></table></figure>
-</li>
-<li><p>##文字_引用<br>对于简单的文字或几行代码，可以以邮件的输入方式“&gt;”来表示。引用的里面的所有markdown格式都将有效。引用里面可以再添加次级引用。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;Dear XX,</div><div class="line">&gt;How&apos;s your going? Last week, I visted Paris. I learned some french:</div><div class="line">&gt;&gt;1.*Bonjour*;</div><div class="line">&gt;&gt;2.*Merci*;</div><div class="line">&gt;（注：这儿有一空行，退出二级引用）</div><div class="line">&gt;It&apos;s wonderful! </div><div class="line">&gt;CU soon!</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>效果是这样的：</p>
-<blockquote>
-<p>Dear XX,<br>How’s your going? Last week, I visted Paris. I learned some french:</p>
-<blockquote>
-<p>1.<em>Bonjour</em>;<br>2.<em>Merci</em>;</p>
-</blockquote>
-<p>It’s wonderful!<br>CU soon!</p>
-</blockquote>
-<ul>
-<li>##链接<br>Markdown支持两种风格的链接：<strong><em>Inline</em></strong>和<strong><em>Reference</em></strong>。</li>
-</ul>
-<p><strong>Inline</strong>：以中括号标记显示的链接文本，后面紧跟用小括号包围的链接。如果链接有title属性，则在链接中使用空格加”title属性”。</p>
-<p><strong>Reference</strong>：一般应用于多个不同位置使用相同链接。通常分为两个部分，调用部分为<a href="http://equation85.github.io/blog/markdown-examples/" target="_blank" rel="external">链接文本</a>；定义部分可以出现在文本中的其他位置，格式为<a href="http://equation85.github.io/blog/markdown-examples/" target="_blank" rel="external">ref</a>: <a href="http://some/link/address" target="_blank" rel="external">http://some/link/address</a> (可选的标题)。<br>注：ref中不区分大小写。</p>
-<p>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">这是我的博客地址[My_blog](http://cthgj.me &quot;HUGO&quot;)。</div><div class="line">部分博客内容引用自[equation8][ref]。</div><div class="line">[ref]:http://equation85.github.io/blog/markdown-examples/</div><div class="line">*注：title 为可选；</div><div class="line">*注：ref其实就类似于写文章中的插入参考文献，先加入文字，再在文末添加references相关信息；</div></pre></td></tr></table></figure></p>
-<p>效果</p>
-<p>这是我的博客地址<a href="http://cthgj.me" title="HUGO">My_blog</a>。<br>部分博客内容引用自<a href="http://equation85.github.io/blog/markdown-examples/" target="_blank" rel="external">equation8</a>。</p>
-<p>对于图片的链接，在中括号前加<strong>叹号</strong>即可。<br><strong><em>注：Markdown不能设置图片大小，如果必须设置则应使用HTML标记<img>。</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Inline示例：![banner](https://raw.githubusercontent.com/e-tomato/e-tomato.github.io/master/img/banner.jpg)</div><div class="line">Reference示例：![替代文本][pic]</div><div class="line">[pic]:https://raw.githubusercontent.com/e-tomato/e-tomato.github.io/master/img/banner.jpg &quot;可选的title&quot;</div><div class="line">HTML示例：&lt;img src=&quot;https://raw.githubusercontent.com/e-tomato/e-tomato.github.io/master/img/banner.jpg&quot; alt=&quot;替代文本&quot; title=&quot;标题文本&quot; width=&quot;200&quot; /&gt;</div></pre></td></tr></table></figure></p>
-<p>效果：</p>
-<p>Inline示例：<img src="https://raw.githubusercontent.com/e-tomato/e-tomato.github.io/master/img/banner.jpg" alt="banner"><br>Reference示例：<img src="https://raw.githubusercontent.com/e-tomato/e-tomato.github.io/master/img/banner.jpg" alt="替代文本" title="可选的title"></p>
-<p>HTML示例：<img src="https://raw.githubusercontent.com/e-tomato/e-tomato.github.io/master/img/banner.jpg" alt="替代文本" title="标题文本" width="200"></p>
-<ul>
-<li>##列表<br>无序列表使用*、+或-后面加上空格来表示。<br>有序列表使用数字加英文句号加空格表示。例如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">* Item 1</div><div class="line">* Item 2</div><div class="line">* Item 3</div><div class="line"></div><div class="line">+ Item 1</div><div class="line">+ Item 2</div><div class="line">+ Item 3</div><div class="line"></div><div class="line">- Item 1</div><div class="line">- Item 2</div><div class="line">- Item 3</div><div class="line"></div><div class="line">1. Item 1</div><div class="line">2. Item 2</div><div class="line">3. Item 3</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>效果：</p>
-<blockquote>
-<ul>
-<li>Item 1</li>
-<li>Item 2</li>
-<li>Item 3</li>
-</ul>
-<ul>
-<li>Item 1</li>
-<li>Item 2</li>
-<li>Item 3</li>
-</ul>
-<ul>
-<li>Item 1</li>
-<li>Item 2</li>
-<li>Item 3</li>
-</ul>
-<ol>
-<li>Item 1</li>
-<li>Item 2</li>
-<li>Item 3</li>
-</ol>
-</blockquote>
-<ul>
-<li>##表格</li>
-</ul>
-<p>Markdown的扩展语法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Item     | Value</div><div class="line">-------- | ---</div><div class="line">Computer | $1600</div><div class="line">Phone    | $12</div><div class="line">Pipe     | $1</div><div class="line"></div><div class="line">| Tables        | Are           | Cool  |</div><div class="line">| ------------- |:-------------:| -----:|(：表示文本位置，默认为左对齐)</div><div class="line">| col 3 is      | right-aligned | $1600 |</div><div class="line">| col 2 is      | centered      |   $12 |</div><div class="line">| zebra stripes | are neat      |    $1 |</div></pre></td></tr></table></figure></p>
-<p>效果</p>
-<table>
-<thead>
-<tr>
-<th>Item</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Computer</td>
-<td>$1600</td>
-</tr>
-<tr>
-<td>Phone</td>
-<td>$12</td>
-</tr>
-<tr>
-<td>Pipe</td>
-<td>$1</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Tables</th>
-<th style="text-align:center">Are</th>
-<th style="text-align:right">Cool</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>col 3 is</td>
-<td style="text-align:center">right-aligned</td>
-<td style="text-align:right">$1600</td>
-</tr>
-<tr>
-<td>col 2 is</td>
-<td style="text-align:center">centered</td>
-<td style="text-align:right">$12</td>
-</tr>
-<tr>
-<td>zebra stripes</td>
-<td style="text-align:center">are neat</td>
-<td style="text-align:right">$1</td>
-</tr>
-</tbody>
-</table>
-<p>基本上就这些了，等需要时再更新。</p>
-<p>最后，由于使用jacman主题，最好使用如下语法写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">title: postName #文章页面上的显示名称，可以任意修改，不会出现在URL中</div><div class="line">date: 2013-12-02 15:30:16 #文章生成时间，一般不改，当然也可以任意修改</div><div class="line">categories: example #分类</div><div class="line">tags: [tag1,tag2,tag3] #文章标签，可空，多标签请用格式，注意:后面有个空格</div><div class="line">description: 附加一段文章摘要，字数最好在140字以内。</div></pre></td></tr></table></figure>
-          
+          初学markdown，很多格式都不清楚，因此本文旨在根据成文的顺序，搜集各博客后总结出语法，以供自己后续练习作参考。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/05/13/Markdown格式/">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1642,16 +1298,6 @@ e) 部署到网站：
           
 
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/05/13/阅读书目/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/13/阅读书目/" itemprop="commentCount"></span>
-                </a>
-              </span>
             
           
 
@@ -1776,16 +1422,6 @@ e) 部署到网站：
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/05/10/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/10/hello-world/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -1809,18 +1445,14 @@ e) 部署到网站：
 
       
         
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
+          basic hexo-blog generating processes。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/05/10/hello-world/">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1895,7 +1527,7 @@ e) 部署到网站：
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1925,6 +1557,13 @@ e) 部署到网站：
 
         </nav>
 
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
         
 
         <div class="links-of-author motion-element">
@@ -2107,34 +1746,32 @@ e) 部署到网站：
 
   
 
-    <script type="text/javascript">
-      var disqus_shortname = 'cthgj';
-      var disqus_identifier = 'index.html';
-
-      var disqus_title = "";
 
 
-      function run_disqus_script(disqus_script) {
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
 
-      run_disqus_script('count.js');
+	
 
-      
 
-    </script>
+
+
+
   
 
 
 
 
 
+  
+    
+
+    
+  
 
 
+
+
+
+  
 
 
 
