@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cthgj.me/"/>
-  <updated>2017-03-28T19:53:50.990Z</updated>
+  <updated>2017-05-01T16:55:13.087Z</updated>
   <id>http://cthgj.me/</id>
   
   <author>
@@ -14,6 +14,293 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>正则表达式[Regular expression]</title>
+    <link href="http://cthgj.me/2017/04/05/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-Regular-expression/"/>
+    <id>http://cthgj.me/2017/04/05/正则表达式-Regular-expression/</id>
+    <published>2017-04-05T19:24:18.000Z</published>
+    <updated>2017-05-01T16:55:13.087Z</updated>
+    
+    <content type="html"><![CDATA[<p>由于在分析数据时经常需要进行查找、匹配、替换等操作，并且不管在什么系统中都会经常遇到，因此对正则表达式的整理很有必要。</p>
+<p>目前自己总结如下：</p>
+<ul>
+<li>正则表达式的基本模式是： <font size="3px"><font color="red"><strong>定位(Anchors)</strong>+ <strong>内容</strong> + <strong>数量(Quantifiers，重复次数)</strong></font></font></li>
+<li>针对上述各模块的字符类型以及表达方式。</li>
+</ul>
+<hr>
+<h1 id="1-基本模式"><a href="#1-基本模式" class="headerlink" title="1. 基本模式"></a>1. 基本模式</h1><h2 id="gt-定位-Anchors"><a href="#gt-定位-Anchors" class="headerlink" title="==&gt; 定位(Anchors)"></a>==&gt; 定位(Anchors)</h2><ul>
+<li><h4 id="常用的定位符-也称元字符Metacharacters-如下表："><a href="#常用的定位符-也称元字符Metacharacters-如下表：" class="headerlink" title="常用的定位符(也称元字符Metacharacters)如下表："></a>常用的定位符(也称元字符Metacharacters)如下表：</h4></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字符</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">例如(<code>file=c(&quot;hello!&quot;,&quot;held on&quot;,&quot;shell&quot;,&quot;he_llo&quot;,&quot;she2hd&quot;)</code>; “==&gt;” 表示返回值)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>^</code></td>
+<td style="text-align:center">字符串或行的起始(Start of the string)</td>
+<td style="text-align:center">e.g. 找出以”hel” 开始的string: <code>grep(&quot;^hel&quot;,file,value=TRUE)</code> ==&gt; “hello!”  “held on”</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>$</code></td>
+<td style="text-align:center">字符串或行的结尾(End of the string)</td>
+<td style="text-align:center">e.g. 找出以”ell”结尾的string: <code>grep(&quot;ell$&quot;,file ,value=TRUE)</code> ==&gt; “shell”</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\\b</code></td>
+<td style="text-align:center">匹配<strong>单词</strong>的开始或结尾(Empty string at either edge of a word)</td>
+<td style="text-align:center">e.g.找出以he开始，o或者d结尾的单词: <code>grep(&quot;\\bhe.*[od]\\b&quot;,file,value=TRUE)</code> ==&gt; “hello!” “held on” “he_llo”</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\\B</code></td>
+<td style="text-align:center">匹配非单词的开始或结尾(NOT the edge of a word)</td>
+<td style="text-align:center">e.g.找出不以he开始的单词: <code>grep(&quot;\\Bhe&quot;,file,value=TRUE)</code> ==&gt; “shell” “she2hd”</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\\&lt;</code></td>
+<td style="text-align:center">单词开始(Beginning of a word)</td>
+<td style="text-align:center">e.g. 找出以s开始的单词: <code>grep(&quot;\\&lt;s&quot;,file,value=TRUE)</code>==&gt; “shell” “she2hd”</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\\&gt;</code></td>
+<td style="text-align:center">单词结束(End of a word)</td>
+<td style="text-align:center">e.g. 找出以h开始，以d或者o结尾的单词: <code>grep(&quot;\\&lt;h.*[do]\\&gt;&quot;,file,value=TRUE)</code> ==&gt; “hello!” “held on” “he_llo”</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\\s</code></td>
+<td style="text-align:center">匹配任意的空白符，包括空格，制表符(Tab)，换行符，中文全角空格等</td>
+<td style="text-align:center">e.g. 找出以任何内容开始，中间含有空格，然后以n结尾的单词:<code>grep(&quot;.*\\s.*n\\b&quot;,file,value=TRUE)</code> ==&gt; “held on”</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\\w</code></td>
+<td style="text-align:center">匹配字母或数字或下划线或汉字等</td>
+<td style="text-align:center">e.g. 找出以s开头的任何词: <code>grep(&quot;\\&lt;she\\w*\\&gt;&quot;,file,value=TRUE)</code> ==&gt; “shell”  “she2hd”</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\\d</code></td>
+<td style="text-align:center">匹配数字</td>
+<td style="text-align:center">e.g. 找出含有数字+h的词: <code>grep(&quot;\\dh&quot;,file,value=TRUE)</code> ==&gt; “she2hd”</td>
+</tr>
+</tbody>
+</table>
+<p><strong> <em>注意：</em></strong></p>
+<ol>
+<li>以<code>\\b</code>, <code>\\&gt;</code>结尾时，匹配内容 都是写在这些字符之前而不是之后。</li>
+<li>凡是匹配，为了更加精确尽量把匹配内容都表示完。</li>
+</ol>
+<h2 id="gt-内容"><a href="#gt-内容" class="headerlink" title="==&gt; 内容"></a>==&gt; 内容</h2><ul>
+<li><h4 id="字符类型："><a href="#字符类型：" class="headerlink" title="字符类型："></a>字符类型：</h4></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字符</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">例如(<code>file2=c(&quot;hello!&quot;,&quot;(+33) 06 35 89 75&quot;,&quot;023-6589&quot;,&quot;89he_llo&quot;,&quot;(001)+she2hd&quot;)</code>; “==&gt;” 表示返回值)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>[[:digit:]]</code>=<code>\\d</code>=<code>[0-9]</code></td>
+<td style="text-align:center">匹配含有(特定)数字的项</td>
+<td style="text-align:center">e.g. 含0-2的项: <code>grep(&quot;[0-2]&quot;,file2,value=TRUE)</code> ==&gt; “(+33) 06 35 89 75” “023-6589” “(001)+she2hd”</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\\D</code>=<code>[^0-9]</code></td>
+<td style="text-align:center">匹配含有非(特定)数字的项(<strong>不是指 不含有数字</strong>)</td>
+<td style="text-align:center">e.g. <code>grep(&quot;[^0-2]&quot;,file2,value=TRUE)</code> ==&gt; “hello!” “(+33) 06 35 89 75” “023-6589” “89he_llo” “(001)+she2hd”</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[[:lower:]]</code>=<code>[a-z]</code></td>
+<td style="text-align:center">匹配含有小写字母的项</td>
+<td style="text-align:center">e.g. 含b-m的项: <code>grep(&quot;[b-m]&quot;,file2,value=TRUE)</code> ==&gt; “hello!” “89he_llo” “(001)+she2hd”</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[[:upper:]]</code>=<code>[A-Z]</code></td>
+<td style="text-align:center">匹配含有大写字母的项</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[[:alpha:]]</code>=<code>[A-z]</code></td>
+<td style="text-align:center">匹配含有小写字母的项</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[[:alnum:]]</code>=<code>[A-z0-9]</code></td>
+<td style="text-align:center">匹配含有数字+字母的项</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\\w</code>=`[A-z0-9_]</td>
+<td style="text-align:center">匹配单词(word characters)</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\\W</code></td>
+<td style="text-align:center">匹配非单词(Non-word characters)</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[[:xdigit:]]</code>=<code>\\x</code>=<code>[0-9A-Fa-f]</code></td>
+<td style="text-align:center">十六进制(hexadec.digits)</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[[:blank:]]</code></td>
+<td style="text-align:center">Space and tab</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[[:space:]]</code>=<code>\\s</code></td>
+<td style="text-align:center">Space, tab, vertical tab, newline, formfeed, carriage return</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\\S</code>=`[^[:space:]]</td>
+<td style="text-align:center">非空格 Not space</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[[:punct:]]</code></td>
+<td style="text-align:center">Punctuation characters includes: !”#$%&amp;’()*+,-./:;&lt;=&gt;?@[]^_`{}~</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><h4 id="转义字符："><a href="#转义字符：" class="headerlink" title="转义字符："></a>转义字符：</h4></li>
+</ul>
+<p>当我们查找元字符本身，如<code>,</code> 或者<code>*</code>。你没办法指定它们，因为它们会被解释成别的意思。这时就得使用\来取消这些字符的特殊意义。因此，你应该使用<code>\\,</code>和<code>\\*</code>。当然，要查找\本身，你也得用<code>\\\</code>。例如：rstudio<code>\\</code>.com匹配rstudio.com，tmp<code>\\\</code>files匹配tmp\files。需要转义的字符如下: <strong> <font size="3px"> <font color="red">“!#$%&amp;’()*+,-./:;&lt;=&gt;?@[]^_`{|}~”</font></font></strong> 也即是上述的punctuation 字符。</p>
+<ul>
+<li><h4 id="条件限定方式："><a href="#条件限定方式：" class="headerlink" title="条件限定方式："></a>条件限定方式：</h4></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字符</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">例如</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>.</code></td>
+<td style="text-align:center">除换行符(\n)外的任何字符</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>竖线</code></td>
+<td style="text-align:center">或 (含有不同模式时，先写各模式再用竖线分开)</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[...]</code></td>
+<td style="text-align:center">允许的字符类型或者范围都被中括号包围</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[a-z]</code></td>
+<td style="text-align:center">- 用以表示范围</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[^...]</code></td>
+<td style="text-align:center">^ 用以排除范围</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>(...)</code></td>
+<td style="text-align:center">小括号用以表示分组：Grouping, enables back referencing using \N where N is an integer</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>{...}</code></td>
+<td style="text-align:center">大括号用以表示重复范围</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="gt-数量"><a href="#gt-数量" class="headerlink" title="==&gt; 数量"></a>==&gt; 数量</h2><ul>
+<li><h4 id="常规类型："><a href="#常规类型：" class="headerlink" title="常规类型："></a>常规类型：</h4></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字符</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">例如</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>*</code></td>
+<td style="text-align:center">匹配至少0次</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>+</code></td>
+<td style="text-align:center">匹配至少一次</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>？</code></td>
+<td style="text-align:center">匹配最多一次</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>{n}</code></td>
+<td style="text-align:center">匹配确切的n次</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>{n,}</code></td>
+<td style="text-align:center">匹配至少n次</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>{,n}</code></td>
+<td style="text-align:center">匹配最多n次</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>{n,m}</code></td>
+<td style="text-align:center">匹配n至m次</td>
+<td style="text-align:center">e.g.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><h4 id="贪婪与懒惰匹配："><a href="#贪婪与懒惰匹配：" class="headerlink" title="贪婪与懒惰匹配："></a>贪婪与懒惰匹配：</h4></li>
+</ul>
+<p><strong>贪婪(Greedy):</strong> 匹配尽可能多的字符。e.g. a.*b, 它将会匹配最长的以a开始，以b结束的字符串。grep(“a.*b”,”aabab”,value=TRUE) ==&gt; “aabab”  它会匹配整个字符串aabab。<br><strong>懒惰(Lazy):</strong> 匹配尽可能少的字符。采取的方式是在在之前贪婪模式下加上?即可。a.*?b匹配最短的，以a开始，以b结束的字符串。针对aabab，匹配位置为aab(第一到第三个字符)和ab (第四到第五个字符)</p>
+<h1 id="2-常用模式匹配的function"><a href="#2-常用模式匹配的function" class="headerlink" title="2. 常用模式匹配的function"></a>2. 常用模式匹配的function</h1><p>带模式匹配的常用function有已下四种类型：<br>匹配(Detect pattern), 定位(Locate pattern), 提取(Extract pattern), 替代(Replace pattern)<br>具体见下图：<br><img src="/uploads/Functions_for_pattern_matching.jpg" alt="Functions"></p>
+<hr>
+<p>PS: 针对以上, 可以搜索<a href="https://www.rstudio.com/wp-content/uploads/2016/09/RegExCheatsheet.pdf" target="_blank" rel="external"><font color="blue"><strong>参考PDF</strong></font></a> R regular expression cheatsheet. </p>
+]]></content>
+    
+    <summary type="html">
+    
+      重复多遍的工作最好还是整理一下，方便自己再次查看，本文旨在总结R中常用的正则表达方式。
+    
+    </summary>
+    
+      <category term="数据分析" scheme="http://cthgj.me/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+    
+    
+      <category term="R" scheme="http://cthgj.me/tags/R/"/>
+    
+      <category term="regExp" scheme="http://cthgj.me/tags/regExp/"/>
+    
+      <category term="正则表达式" scheme="http://cthgj.me/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    
+      <category term="grep" scheme="http://cthgj.me/tags/grep/"/>
+    
+  </entry>
   
   <entry>
     <title>Summary of git and hexo for my web</title>
@@ -193,11 +480,11 @@
   </entry>
   
   <entry>
-    <title>R基本命令(不完全记录）</title>
+    <title>R基本命令(不完全记录)</title>
     <link href="http://cthgj.me/2015/05/19/R%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4-%E4%B8%8D%E5%AE%8C%E5%85%A8%E8%AE%B0%E5%BD%95%EF%BC%89/"/>
     <id>http://cthgj.me/2015/05/19/R基本命令-不完全记录）/</id>
     <published>2015-05-19T21:36:07.000Z</published>
-    <updated>2015-07-02T20:46:04.877Z</updated>
+    <updated>2017-03-28T20:45:18.755Z</updated>
     
     <content type="html"><![CDATA[<p></p><p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" target="_blank" rel="external">http://rmarkdown.rstudio.com</a>.</p><p></p>
 <p></p><p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. </p>
