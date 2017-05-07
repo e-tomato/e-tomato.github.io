@@ -369,49 +369,6 @@
   </entry>
   
   <entry>
-    <title>Welcome-To-my-World!</title>
-    <link href="http://cthgj.me/2017/03/12/test/"/>
-    <id>http://cthgj.me/2017/03/12/test/</id>
-    <published>2017-03-12T21:24:37.287Z</published>
-    <updated>2017-03-25T22:46:53.337Z</updated>
-    
-    <content type="html"><![CDATA[<p>只是测试一下。oyeah！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;只是测试一下。oyeah！&lt;/p&gt;
-
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>基因调控网络的演化层级关系</title>
-    <link href="http://cthgj.me/2015/07/02/%E5%9F%BA%E5%9B%A0%E8%B0%83%E6%8E%A7%E7%BD%91%E7%BB%9C%E7%9A%84%E6%BC%94%E5%8C%96%E5%B1%82%E7%BA%A7%E5%85%B3%E7%B3%BB/"/>
-    <id>http://cthgj.me/2015/07/02/基因调控网络的演化层级关系/</id>
-    <published>2015-07-02T20:52:05.000Z</published>
-    <updated>2015-07-02T20:57:48.109Z</updated>
-    
-    <content type="html"><![CDATA[<p>来源是Nature review上的一篇opinion：The evolution of hierarchical gene regulatory networks, 作者Dougloas H.Erwin和Eric H.Davidson</p>
-]]></content>
-    
-    <summary type="html">
-    
-      介绍基因调控网络为何保持保守性？并逐步演化发展和丰富其层级性。
-    
-    </summary>
-    
-    
-      <category term="GRN，hierarchical" scheme="http://cthgj.me/tags/GRN%EF%BC%8Chierarchical/"/>
-    
-      <category term="evolution" scheme="http://cthgj.me/tags/evolution/"/>
-    
-  </entry>
-  
-  <entry>
     <title>概率统计学习-My Questionnaire</title>
     <link href="http://cthgj.me/2015/06/06/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0-%E4%B8%80/"/>
     <id>http://cthgj.me/2015/06/06/概率统计学习-一/</id>
@@ -879,45 +836,6 @@ $(document).ready(function () {
   </entry>
   
   <entry>
-    <title>对于生物学测序数据的思路分析</title>
-    <link href="http://cthgj.me/2015/05/19/%E5%AF%B9%E4%BA%8E%E7%94%9F%E7%89%A9%E5%AD%A6%E6%B5%8B%E5%BA%8F%E6%95%B0%E6%8D%AE%E7%9A%84%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/"/>
-    <id>http://cthgj.me/2015/05/19/对于生物学测序数据的思路分析/</id>
-    <published>2015-05-19T15:24:51.000Z</published>
-    <updated>2015-07-02T20:44:34.198Z</updated>
-    
-    <content type="html"><![CDATA[<ul>
-<li>对于测序结果，常问的问题：<ul>
-<li><strong>某一类</strong>基因的表达变化量如何？<br>这个某一类包含的信息有：<br>1.基本的筛选过程：<ul>
-<li>p-value or adjust p-value ( &lt;0.05, 0.01, 0.001);</li>
-<li>Log2FoldChange (abs &gt;=1, or 2);</li>
-<li>baseMean (&gt;0, or other values);</li>
-<li>FDR;<br>2.用户定义的筛选过程（user interested）：</li>
-<li>各个baseMean百分比下的整体基因变化趋势，</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      现在以及将来测序会是最基本的技术，但是不管是genome-seq，RNA-seq，ChIP-seq等等，理解思路才是关键。
-    
-    </summary>
-    
-      <category term="数据分析思路" scheme="http://cthgj.me/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%80%9D%E8%B7%AF/"/>
-    
-    
-      <category term="组学" scheme="http://cthgj.me/tags/%E7%BB%84%E5%AD%A6/"/>
-    
-      <category term="生物学过程" scheme="http://cthgj.me/tags/%E7%94%9F%E7%89%A9%E5%AD%A6%E8%BF%87%E7%A8%8B/"/>
-    
-      <category term="数据分析" scheme="http://cthgj.me/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Markdown格式</title>
     <link href="http://cthgj.me/2015/05/13/Markdown%E6%A0%BC%E5%BC%8F/"/>
     <id>http://cthgj.me/2015/05/13/Markdown格式/</id>
@@ -1060,63 +978,6 @@ $(document).ready(function () {
     
     
       <category term="markdown" scheme="http://cthgj.me/tags/markdown/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>阅读书目</title>
-    <link href="http://cthgj.me/2015/05/13/%E9%98%85%E8%AF%BB%E4%B9%A6%E7%9B%AE/"/>
-    <id>http://cthgj.me/2015/05/13/阅读书目/</id>
-    <published>2015-05-13T19:14:35.000Z</published>
-    <updated>2016-05-17T12:52:25.489Z</updated>
-    
-    <content type="html"><![CDATA[<ol>
-<li>《伟大的博物学家》;</li>
-<li>《平凡的世界》；</li>
-<li>Molecular Biology: Principles of Genome Function</li>
-<li>to be continued;</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;ol&gt;
-&lt;li&gt;《伟大的博物学家》;&lt;/li&gt;
-&lt;li&gt;《平凡的世界》；&lt;/li&gt;
-&lt;li&gt;Molecular Biology: Principles of Genome Function&lt;/li&gt;
-&lt;li&gt;to be continued;&lt;/li&gt;
-&lt;/ol&gt;
-
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://cthgj.me/2015/05/10/hello-world/"/>
-    <id>http://cthgj.me/2015/05/10/hello-world/</id>
-    <published>2015-05-10T21:20:23.168Z</published>
-    <updated>2017-03-28T18:48:52.397Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      basic hexo-blog generating processes。
-    
-    </summary>
-    
     
   </entry>
   
